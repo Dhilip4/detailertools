@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum - detailertools.com</title>
+    <title>Forum - DetailerTools.com</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,203 +11,408 @@
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Netlify Identity -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cross-animation.css">
+    
+    <style>
+        .forum-thread {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .forum-thread:hover {
+            transform: translateX(4px);
+            border-left-color: #76b900;
+        }
+        
+        .forum-thread.pinned {
+            border-left-color: #ff9800;
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+        }
+        
+        .forum-thread.locked {
+            opacity: 0.7;
+            border-left-color: #ef4444;
+        }
+        
+        .thread-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .thread-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .thread-author img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .category-badge {
+            background: linear-gradient(135deg, #76b900 0%, #8bc34a 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .reply-count {
+            background: rgba(118, 185, 0, 0.2);
+            color: #76b900;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 3rem 0.75rem 1rem;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #76b900;
+            box-shadow: 0 0 0 0.2rem rgba(118, 185, 0, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .new-thread-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 40;
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, rgba(118, 185, 0, 0.1) 0%, rgba(118, 185, 0, 0.05) 100%);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+        }
+    </style>
 </head>
 <body class="text-white">
     <!-- Navigation -->
-    <nav class="dark-glass sticky top-0 z-50 border-b border-gray-800">
+    <header class="dark-glass sticky top-0 z-50 border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-8">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
-                            <i data-lucide="tool" class="h-6 w-6 text-white"></i>
-                        </div>
-                        <div>
-                            <h1 class="text-xl font-bold glow-text">detailertools.com</h1>
-                            <p class="text-xs text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
-                        </div>
-                    </a>
-                    
-                    <div class="hidden md:flex items-center space-x-6">
-                        <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium">Home</a>
-                        <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium">Word Checker</a>
-                        <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium">Calculator</a>
-                        <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium">Blog</a>
-                        <a href="forum.html" class="nav-link active text-gray-300 hover:text-white font-medium">Forum</a>
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
+                        <i data-lucide="tool" class="h-6 w-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">DetailerTools.com</h1>
+                        <p class="text-xs text-gray-400">Professional Tekla Detailer Suite</p>
                     </div>
                 </div>
                 
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <input type="text" id="searchInput" placeholder="Search tools and content..." class="bg-gray-800 text-white rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <i data-lucide="search" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
-                    </div>
-                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
-                        <i data-lucide="bell" class="h-5 w-5"></i>
-                    </button>
-                    <button id="loginBtn" class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
-                        <i data-lucide="user" class="h-5 w-5"></i>
-                    </button>
-                </div>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="checker.html" class="text-gray-300 hover:text-white transition-colors">Word Checker</a></li>
+                        <li><a href="calculator.html" class="text-gray-300 hover:text-white transition-colors">Calculator</a></li>
+                        <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="forum.html" class="text-green-400 font-semibold">Forum</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
-    </nav>
-
-    <!-- Mobile Navigation -->
-    <div class="md:hidden dark-glass border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 py-3">
-            <div class="flex justify-around">
-                <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="home" class="h-4 w-4 mx-auto mb-1"></i>
-                    Home
-                </a>
-                <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="search" class="h-4 w-4 mx-auto mb-1"></i>
-                    Checker
-                </a>
-                <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="calculator" class="h-4 w-4 mx-auto mb-1"></i>
-                    Calc
-                </a>
-                <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="file-text" class="h-4 w-4 mx-auto mb-1"></i>
-                    Blog
-                </a>
-                <a href="forum.html" class="nav-link active text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="message-circle" class="h-4 w-4 mx-auto mb-1"></i>
-                    Forum
-                </a>
-            </div>
-        </div>
-    </div>
+    </header>
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold mb-2">Community Forum</h1>
-            <p class="text-gray-400">Connect with steel detailers and share knowledge</p>
-        </div>
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <div class="cross-animation-container mb-6">
+                <div class="cross-animated">
+                    <div class="cross-particles">
+                        <div class="cross-particle"></div>
+                        <div class="cross-particle"></div>
+                        <div class="cross-particle"></div>
+                        <div class="cross-particle"></div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-4xl font-bold mb-4 glow-text">Tekla Detailer Forum</h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                Connect with fellow Tekla detailers, share knowledge, solve problems, and stay updated 
+                with the latest industry trends and best practices.
+            </p>
+        </section>
 
-        <!-- Admin Access (hidden) -->
-        <div id="adminPanel" class="hidden nvidia-card rounded-xl p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Admin Panel</h2>
-            <button class="nvidia-button px-4 py-2 rounded-lg text-white font-semibold">Moderate Posts</button>
-            <button class="ml-4 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold">Delete Posts</button>
-        </div>
+        <!-- Search and Stats -->
+        <section class="mb-8">
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-1">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search discussions, topics, or users..." class="search-input">
+                        <i data-lucide="search" class="search-icon h-5 w-5"></i>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2 grid grid-cols-3 gap-4">
+                    <div class="stats-card nvidia-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-green-400">1,247</div>
+                        <div class="text-sm text-gray-400">Active Members</div>
+                    </div>
+                    <div class="stats-card nvidia-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-blue-400">3,892</div>
+                        <div class="text-sm text-gray-400">Discussions</div>
+                    </div>
+                    <div class="stats-card nvidia-card rounded-xl p-4 text-center">
+                        <div class="text-2xl font-bold text-orange-400">12,456</div>
+                        <div class="text-sm text-gray-400">Total Replies</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- New Topic Button -->
-        <div id="newTopicSection" class="hidden mb-8">
-            <button class="nvidia-button px-6 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
-                <i data-lucide="plus" class="h-5 w-5"></i>
-                New Topic
+        <!-- Categories and New Thread -->
+        <section class="mb-8">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-3">
+                    <button class="category-badge">All Categories</button>
+                    <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">General</button>
+                    <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Tekla Help</button>
+                    <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Best Practices</button>
+                    <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Project Showcase</button>
+                    <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Jobs & Careers</button>
+                </div>
+                
+                <button class="nvidia-button px-6 py-2 rounded-xl text-white font-semibold flex items-center gap-2">
+                    <i data-lucide="plus" class="h-4 w-4"></i>
+                    New Thread
+                </button>
+            </div>
+        </section>
+
+        <!-- Forum Threads -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 section-title">Recent Discussions</h2>
+            <div class="space-y-4">
+                <!-- Pinned Thread -->
+                <article class="forum-thread pinned nvidia-card rounded-xl p-6 cursor-pointer">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="pin" class="h-4 w-4 text-orange-400"></i>
+                                <span class="category-badge">Announcement</span>
+                                <span class="reply-count">245 replies</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">
+                                🎉 Welcome to the New DetailerTools Forum! 
+                            </h3>
+                            <p class="text-gray-300 mb-4 line-clamp-2">
+                                We're excited to launch our new community forum! This space is designed for Tekla detailers 
+                                to connect, share knowledge, and help each other grow professionally...
+                            </p>
+                            <div class="thread-meta">
+                                <div class="thread-author">
+                                    <img src="https://picsum.photos/seed/admin/20/20.jpg" alt="Admin">
+                                    <span class="text-green-400">Admin Team</span>
+                                </div>
+                                <span>•</span>
+                                <span>Pinned</span>
+                                <span>•</span>
+                                <span>1 week ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regular Thread 1 -->
+                <article class="forum-thread nvidia-card rounded-xl p-6 cursor-pointer">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="category-badge">Tekla Help</span>
+                                <span class="reply-count">23 replies</span>
+                                <span class="text-xs text-green-400">● Active</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">
+                                How to handle complex curved beam connections in Tekla?
+                            </h3>
+                            <p class="text-gray-300 mb-4 line-clamp-2">
+                                I'm working on a stadium project with complex curved roof beams. The connections are 
+                                proving challenging to model accurately. Has anyone dealt with similar geometry? 
+                                Looking for best practices and workflow suggestions...
+                            </p>
+                            <div class="thread-meta">
+                                <div class="thread-author">
+                                    <img src="https://picsum.photos/seed/user1/20/20.jpg" alt="User">
+                                    <span>John Martinez</span>
+                                </div>
+                                <span>•</span>
+                                <span>3 hours ago</span>
+                                <span>•</span>
+                                <span>Last reply: 15 min ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regular Thread 2 -->
+                <article class="forum-thread nvidia-card rounded-xl p-6 cursor-pointer">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="category-badge">Best Practices</span>
+                                <span class="reply-count">45 replies</span>
+                                <span class="text-xs text-orange-400">● Hot</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">
+                                What's your workflow for quality control in large projects?
+                            </h3>
+                            <p class="text-gray-300 mb-4 line-clamp-2">
+                                Curious about how everyone handles QC processes when working on large-scale projects. 
+                                Do you use specific software tools? What are your checklists and verification methods? 
+                                Share your experience...
+                            </p>
+                            <div class="thread-meta">
+                                <div class="thread-author">
+                                    <img src="https://picsum.photos/seed/user2/20/20.jpg" alt="User">
+                                    <span>Sarah Chen</span>
+                                </div>
+                                <span>•</span>
+                                <span>1 day ago</span>
+                                <span>•</span>
+                                <span>Last reply: 2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Locked Thread -->
+                <article class="forum-thread locked nvidia-card rounded-xl p-6 cursor-pointer opacity-75">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="category-badge">Project Showcase</span>
+                                <span class="reply-count">89 replies</span>
+                                <i data-lucide="lock" class="h-4 w-4 text-red-400"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">
+                                [COMPLETED] 50-Story Steel Frame Project - Final Documentation
+                            </h3>
+                            <p class="text-gray-300 mb-4 line-clamp-2">
+                                This thread is now locked as the project has been completed. Thank you to everyone 
+                                who contributed with suggestions and feedback. Final drawings and documentation 
+                                are available for review...
+                            </p>
+                            <div class="thread-meta">
+                                <div class="thread-author">
+                                    <img src="https://picsum.photos/seed/user3/20/20.jpg" alt="User">
+                                    <span>Mike Wilson</span>
+                                </div>
+                                <span>•</span>
+                                <span>2 weeks ago</span>
+                                <span>•</span>
+                                <span>Locked by moderator</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regular Thread 3 -->
+                <article class="forum-thread nvidia-card rounded-xl p-6 cursor-pointer">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="category-badge">Jobs & Careers</span>
+                                <span class="reply-count">12 replies</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">
+                                [HIRING] Senior Tekla Detailer - NYC Commercial Project
+                            </h3>
+                            <p class="text-gray-300 mb-4 line-clamp-2">
+                                We're looking for an experienced Tekla detailer for a major commercial project 
+                                in New York. Minimum 5 years experience required. Competitive salary and benefits. 
+                                Remote work possible after initial on-site period...
+                            </p>
+                            <div class="thread-meta">
+                                <div class="thread-author">
+                                    <img src="https://picsum.photos/seed/company/20/20.jpg" alt="Company">
+                                    <span class="text-blue-400">SteelCorp Inc.</span>
+                                </div>
+                                <span>•</span>
+                                <span>4 days ago</span>
+                                <span>•</span>
+                                <span>Last reply: 1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regular Thread 4 -->
+                <article class="forum-thread nvidia-card rounded-xl p-6 cursor-pointer">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="category-badge">General</span>
+                                <span class="reply-count">8 replies</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">
+                                Tekla 2024 vs 2023 - Worth the upgrade?
+                            </h3>
+                            <p class="text-gray-300 mb-4 line-clamp-2">
+                                Thinking about upgrading to Tekla 2024. For those who've made the switch, 
+                                are the new features worth it? Any performance improvements or bugs to be aware of? 
+                                Running on Windows 11 with RTX 3080...
+                            </p>
+                            <div class="thread-meta">
+                                <div class="thread-author">
+                                    <img src="https://picsum.photos/seed/user4/20/20.jpg" alt="User">
+                                    <span>Alex Kumar</span>
+                                </div>
+                                <span>•</span>
+                                <span>5 days ago</span>
+                                <span>•</span>
+                                <span>Last reply: 3 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Load More -->
+        <div class="text-center">
+            <button class="nvidia-button px-8 py-3 rounded-xl text-white font-semibold">
+                Load More Discussions
             </button>
         </div>
-
-        <!-- Forum Categories -->
-        <section class="mb-8">
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
-                    <i data-lucide="message-circle" class="h-12 w-12 text-green-400 mx-auto mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">General Discussion</h3>
-                    <p class="text-sm text-gray-400 mb-4">General steel detailing topics</p>
-                    <div class="text-sm text-gray-500">
-                        <span class="font-bold text-green-400">156</span> topics • 
-                        <span class="font-bold text-green-400">2.3k</span> posts
-                    </div>
-                </div>
-
-                <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
-                    <i data-lucide="help-circle" class="h-12 w-12 text-blue-400 mx-auto mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">Q&A</h3>
-                    <p class="text-sm text-gray-400 mb-4">Get help with specific problems</p>
-                    <div class="text-sm text-gray-500">
-                        <span class="font-bold text-blue-400">89</span> topics • 
-                        <span class="font-bold text-blue-400">1.1k</span> posts
-                    </div>
-                </div>
-
-                <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
-                    <i data-lucide="lightbulb" class="h-12 w-12 text-orange-400 mx-auto mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">Tips & Tricks</h3>
-                    <p class="text-sm text-gray-400 mb-4">Share your best practices</p>
-                    <div class="text-sm text-gray-500">
-                        <span class="font-bold text-orange-400">67</span> topics • 
-                        <span class="font-bold text-orange-400">845</span> posts
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Recent Discussions -->
-        <section>
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold">Recent Discussions</h2>
-                <div id="newTopicBtn" class="hidden">
-                    <button class="nvidia-button px-4 py-2 rounded-lg text-white font-semibold">
-                        <i data-lucide="plus" class="h-4 w-4 inline mr-2"></i>
-                        New Topic
-                    </button>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-semibold mb-2">Tips for Accurate Estimating</h3>
-                            <p class="text-gray-300 text-sm mb-4">What are your best practices for creating accurate construction estimates? I've been struggling with...</p>
-                            <div class="flex items-center gap-4 text-xs text-gray-400">
-                                <span>By: John Doe</span>
-                                <span>2 hours ago</span>
-                                <span>12 replies</span>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <button class="text-green-400 hover:text-green-300 text-sm">View →</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-semibold mb-2">Tekla Software Recommendations</h3>
-                            <p class="text-gray-300 text-sm mb-4">Looking for recommendations on Tekla plugins or add-ons that improve productivity...</p>
-                            <div class="flex items-center gap-4 text-xs text-gray-400">
-                                <span>By: Jane Smith</span>
-                                <span>5 hours ago</span>
-                                <span>8 replies</span>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <button class="text-green-400 hover:text-green-300 text-sm">View →</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-semibold mb-2">Steel Detailing Standards</h3>
-                            <p class="text-gray-300 text-sm mb-4">What standards do you follow for steel detailing? AISC, BS, or others?</p>
-                            <div class="flex items-center gap-4 text-xs text-gray-400">
-                                <span>By: Mike Johnson</span>
-                                <span>1 day ago</span>
-                                <span>15 replies</span>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <button class="text-green-400 hover:text-green-300 text-sm">View →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
+
+    <!-- Floating New Thread Button -->
+    <button class="new-thread-btn nvidia-button p-4 rounded-full shadow-lg">
+        <i data-lucide="plus" class="h-6 w-6"></i>
+    </button>
 
     <!-- Footer -->
     <footer class="dark-glass border-t border-gray-800 mt-16">
@@ -218,16 +423,16 @@
                         <div class="w-8 h-8 nvidia-gradient rounded-lg flex items-center justify-center">
                             <i data-lucide="tool" class="h-4 w-4 text-white"></i>
                         </div>
-                        <h3 class="text-lg font-bold">detailertools.com</h3>
+                        <h3 class="text-lg font-bold">DetailerTools.com</h3>
                     </div>
-                    <p class="text-sm text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                    <p class="text-sm text-gray-400">Professional Tekla detailer tools suite built by detailers, for detailers.</p>
                 </div>
                 
                 <div>
                     <h4 class="font-semibold mb-4">Tools</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="checker.html" class="hover:text-white transition-colors">Word Checker</a></li>
-                        <li><a href="calculator.html" class="hover:text-white transition-colors">Calculator</a></li>
+                        <li><a href="calculator.html" class="hover:text-white transition-colors">Feet Inch Calc</a></li>
                     </ul>
                 </div>
                 
@@ -246,70 +451,109 @@
                             <i data-lucide="github" class="h-5 w-5"></i>
                         </button>
                         <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
-                            <i data-lucide="twitter" class="h-5 w-5"></i>
-                        </button>
-                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
                             <i data-lucide="linkedin" class="h-5 w-5"></i>
                         </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <!-- X.com icon -->
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-2.393 7.724h-2.906l-2.393-7.724h-3.308c-1.4 0-2.314.617-2.314 1.374v5.882c0 .757.914 1.374 2.314 1.374h1.146v3.219h-1.146c-1.933 0-3.464-1.567-3.464-3.5v-5.882c0-1.933 1.531-3.5 3.464-3.5h1.146v-3.219z"/>
+                            </svg>
+                        </button>
                     </div>
+                    <p class="text-sm text-gray-400 mt-4">Connect with fellow Tekla detailers</p>
                 </div>
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-                <p>© 2024 detailertools.com. All rights reserved.</p>
+                <p>© 2024 DetailerTools.com. Built with passion for Tekla Steel Detailers.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Netlify Identity
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on('init', user => {
-                if (user) {
-                    document.getElementById('loginBtn').innerHTML = '<i data-lucide="log-out" class="h-5 w-5"></i>';
-                    document.getElementById('newTopicSection').classList.remove('hidden');
-                    document.getElementById('newTopicBtn').classList.remove('hidden');
-                    // Check if admin
-                    if (user.email === 'admin@example.com') { // Replace with actual admin check
-                        document.getElementById('adminPanel').classList.remove('hidden');
-                    }
-                }
-            });
-
-            window.netlifyIdentity.on('login', user => {
-                window.location.reload();
-            });
-
-            window.netlifyIdentity.on('logout', () => {
-                window.location.reload();
-            });
-        }
-
-        document.getElementById('loginBtn').addEventListener('click', () => {
-            if (window.netlifyIdentity.currentUser()) {
-                window.netlifyIdentity.logout();
-            } else {
-                window.netlifyIdentity.open();
-            }
-        });
-
         // Initialize Lucide icons
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
         });
 
         // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const elements = document.querySelectorAll('h1, h2, h3, p');
-            elements.forEach(el => {
-                if (el.textContent.toLowerCase().includes(query)) {
-                    el.style.display = 'block';
-                } else {
-                    el.style.display = 'none';
+        const searchInput = document.querySelector('.search-input');
+        const searchIcon = document.querySelector('.search-icon');
+
+        searchIcon.addEventListener('click', () => {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                // Implement search functionality
+                console.log('Searching for:', searchTerm);
+                // In real app, this would trigger API call
+            }
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchIcon.click();
+            }
+        });
+
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll('.category-badge, .bg-gray-800');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active state from all buttons
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('category-badge');
+                    btn.classList.add('bg-gray-800');
+                });
+                
+                // Add active state to clicked button
+                button.classList.remove('bg-gray-800');
+                button.classList.add('category-badge');
+                
+                // Implement category filtering
+                console.log('Filtering by:', button.textContent);
+                // In real app, this would filter forum threads
+            });
+        });
+
+        // Forum thread click handlers
+        const forumThreads = document.querySelectorAll('.forum-thread');
+        forumThreads.forEach(thread => {
+            thread.addEventListener('click', () => {
+                // In real app, this would navigate to thread detail
+                console.log('Opening forum thread...');
+                
+                // Don't navigate locked threads for non-moderators
+                if (thread.classList.contains('locked')) {
+                    alert('This thread is locked and can only be read.');
                 }
             });
         });
+
+        // New thread button
+        const newThreadBtn = document.querySelector('.new-thread-btn');
+        newThreadBtn.addEventListener('click', () => {
+            // In real app, this would open new thread modal
+            console.log('Creating new thread...');
+            alert('New thread creation would open here in the full application.');
+        });
+
+        // Load more functionality
+        const loadMoreBtn = document.querySelector('.nvidia-button');
+        loadMoreBtn.addEventListener('click', () => {
+            // Implement load more functionality
+            console.log('Loading more discussions...');
+            // In real app, this would load more forum threads via API
+        });
+
+        // Simulate real-time updates
+        setInterval(() => {
+            // Update active status indicators
+            const activeIndicators = document.querySelectorAll('.text-green-400');
+            activeIndicators.forEach(indicator => {
+                // Pulse effect for active threads
+                indicator.style.opacity = indicator.style.opacity === '0.5' ? '1' : '0.5';
+            });
+        }, 2000);
     </script>
 </body>
 </html>

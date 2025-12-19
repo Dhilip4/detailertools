@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - detailertools.com</title>
+    <title>Blog - DetailerTools.com</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,162 +11,352 @@
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Netlify Identity -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cross-animation.css">
+    
+    <style>
+        .blog-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-4px);
+            border-left-color: #76b900;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .blog-author img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+        
+        .category-badge {
+            background: linear-gradient(135deg, #76b900 0%, #8bc34a 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .featured-post {
+            background: linear-gradient(135deg, rgba(118, 185, 0, 0.1) 0%, rgba(118, 185, 0, 0.05) 100%);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 3rem 0.75rem 1rem;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #76b900;
+            box-shadow: 0 0 0 0.2rem rgba(118, 185, 0, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
 </head>
 <body class="text-white">
     <!-- Navigation -->
-    <nav class="dark-glass sticky top-0 z-50 border-b border-gray-800">
+    <header class="dark-glass sticky top-0 z-50 border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-8">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
-                            <i data-lucide="tool" class="h-6 w-6 text-white"></i>
-                        </div>
-                        <div>
-                            <h1 class="text-xl font-bold glow-text">detailertools.com</h1>
-                            <p class="text-xs text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
-                        </div>
-                    </a>
-                    
-                    <div class="hidden md:flex items-center space-x-6">
-                        <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium">Home</a>
-                        <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium">Word Checker</a>
-                        <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium">Calculator</a>
-                        <a href="blog.html" class="nav-link active text-gray-300 hover:text-white font-medium">Blog</a>
-                        <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium">Forum</a>
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
+                        <i data-lucide="tool" class="h-6 w-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">DetailerTools.com</h1>
+                        <p class="text-xs text-gray-400">Professional Tekla Detailer Suite</p>
                     </div>
                 </div>
                 
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <input type="text" id="searchInput" placeholder="Search tools and content..." class="bg-gray-800 text-white rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <i data-lucide="search" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
-                    </div>
-                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
-                        <i data-lucide="bell" class="h-5 w-5"></i>
-                    </button>
-                    <button id="loginBtn" class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
-                        <i data-lucide="user" class="h-5 w-5"></i>
-                    </button>
-                </div>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="checker.html" class="text-gray-300 hover:text-white transition-colors">Word Checker</a></li>
+                        <li><a href="calculator.html" class="text-gray-300 hover:text-white transition-colors">Calculator</a></li>
+                        <li><a href="blog.html" class="text-green-400 font-semibold">Blog</a></li>
+                        <li><a href="forum.html" class="text-gray-300 hover:text-white transition-colors">Forum</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
-    </nav>
-
-    <!-- Mobile Navigation -->
-    <div class="md:hidden dark-glass border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 py-3">
-            <div class="flex justify-around">
-                <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="home" class="h-4 w-4 mx-auto mb-1"></i>
-                    Home
-                </a>
-                <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="search" class="h-4 w-4 mx-auto mb-1"></i>
-                    Checker
-                </a>
-                <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="calculator" class="h-4 w-4 mx-auto mb-1"></i>
-                    Calc
-                </a>
-                <a href="blog.html" class="nav-link active text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="file-text" class="h-4 w-4 mx-auto mb-1"></i>
-                    Blog
-                </a>
-                <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
-                    <i data-lucide="message-circle" class="h-4 w-4 mx-auto mb-1"></i>
-                    Forum
-                </a>
-            </div>
-        </div>
-    </div>
+    </header>
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold mb-2">Steel Detailing Blog</h1>
-            <p class="text-gray-400">Tips, tutorials, and best practices for steel detailers</p>
-        </div>
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <div class="cross-animation-container mb-6">
+                <div class="cross-animated">
+                    <div class="cross-particles">
+                        <div class="cross-particle"></div>
+                        <div class="cross-particle"></div>
+                        <div class="cross-particle"></div>
+                        <div class="cross-particle"></div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-4xl font-bold mb-4 glow-text">Tekla Detailer Blog</h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                Expert insights, tutorials, and best practices for steel detailing professionals. 
+                Learn from industry experts and enhance your Tekla workflow.
+            </p>
+        </section>
 
-        <!-- Admin Access (hidden) -->
-        <div id="adminPanel" class="hidden nvidia-card rounded-xl p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Admin Panel</h2>
-            <button class="nvidia-button px-4 py-2 rounded-lg text-white font-semibold">New Post</button>
-            <button class="ml-4 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold">Manage Posts</button>
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" placeholder="Search articles, topics, or authors..." class="search-input">
+            <i data-lucide="search" class="search-icon h-5 w-5"></i>
         </div>
 
         <!-- Featured Post -->
         <section class="mb-12">
-            <div class="nvidia-card rounded-xl overflow-hidden">
-                <div class="h-64 bg-gradient-to-r from-green-600 to-blue-600 flex items-center justify-center">
-                    <i data-lucide="file-text" class="h-24 w-24 text-white opacity-50"></i>
-                </div>
-                <div class="p-8">
-                    <div class="flex items-center gap-4 mb-4">
-                        <span class="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm">Featured</span>
-                        <span class="text-gray-400 text-sm">5 min read</span>
+            <h2 class="text-2xl font-bold mb-6 section-title">Featured Article</h2>
+            <div class="featured-post nvidia-card rounded-xl p-8">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <div class="mb-4">
+                            <span class="category-badge">Advanced Tutorial</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">
+                            Mastering Complex Steel Connections in Tekla Structures
+                        </h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Learn advanced techniques for modeling and detailing complex steel connections including 
+                            moment connections, bracing frames, and seismic detailing requirements. This comprehensive 
+                            guide covers everything from basic principles to advanced automation.
+                        </p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="https://picsum.photos/seed/author1/24/24.jpg" alt="Author">
+                                <span>Alex Chen</span>
+                            </div>
+                            <span>•</span>
+                            <span>15 min read</span>
+                            <span>•</span>
+                            <span>2 days ago</span>
+                        </div>
                     </div>
-                    <h2 class="text-2xl font-bold mb-4">Understanding Steel Beam Calculations</h2>
-                    <p class="text-gray-300 mb-6">Learn the fundamentals of steel beam calculations and how to ensure structural integrity in your detailing projects.</p>
-                    <button class="nvidia-button px-6 py-2 rounded-lg text-white font-semibold">Read More</button>
+                    <div>
+                        <img src="https://picsum.photos/seed/tekla-steel/600/400.jpg" 
+                             alt="Steel Connection Detail" 
+                             class="w-full h-64 object-cover rounded-lg">
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Categories Filter -->
+        <section class="mb-8">
+            <div class="flex flex-wrap gap-3 justify-center">
+                <button class="category-badge">All Posts</button>
+                <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Tutorials</button>
+                <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Best Practices</button>
+                <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Tips & Tricks</button>
+                <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Industry News</button>
+                <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition-colors">Case Studies</button>
             </div>
         </section>
 
         <!-- Blog Posts Grid -->
-        <section>
-            <h2 class="text-2xl font-bold mb-6">Recent Posts</h2>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 section-title">Recent Articles</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <article class="blog-card nvidia-card rounded-xl overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-600 flex items-center justify-center">
-                        <i data-lucide="calculator" class="h-16 w-16 text-white opacity-50"></i>
+                <!-- Blog Post 1 -->
+                <article class="blog-card nvidia-card rounded-xl p-6 cursor-pointer">
+                    <img src="https://picsum.photos/seed/blog1/400/250.jpg" 
+                         alt="Blog post" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="mb-3">
+                        <span class="category-badge">Tutorial</span>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="px-2 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs">Calculator</span>
-                            <span class="text-gray-400 text-xs">3 min read</span>
+                    <h3 class="text-xl font-semibold mb-3">
+                        Optimizing Tekla Workflow with Custom Components
+                    </h3>
+                    <p class="text-gray-300 mb-4 line-clamp-3">
+                        Discover how to create and implement custom components in Tekla Structures to streamline 
+                        your detailing workflow and reduce repetitive tasks...
+                    </p>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <img src="https://picsum.photos/seed/author2/24/24.jpg" alt="Author">
+                            <span>Sarah Miller</span>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2">Best Practices for Material Takeoffs</h3>
-                        <p class="text-gray-300 text-sm mb-4">Master the art of accurate material estimation with these proven techniques.</p>
-                        <button class="text-green-400 hover:text-green-300 text-sm font-medium">Read More →</button>
+                        <span>•</span>
+                        <span>8 min read</span>
                     </div>
                 </article>
 
-                <article class="blog-card nvidia-card rounded-xl overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-600 flex items-center justify-center">
-                        <i data-lucide="tool" class="h-16 w-16 text-white opacity-50"></i>
+                <!-- Blog Post 2 -->
+                <article class="blog-card nvidia-card rounded-xl p-6 cursor-pointer">
+                    <img src="https://picsum.photos/seed/blog2/400/250.jpg" 
+                         alt="Blog post" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="mb-3">
+                        <span class="category-badge">Best Practices</span>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="px-2 py-1 bg-orange-900/30 text-orange-300 rounded-full text-xs">Tools</span>
-                            <span class="text-gray-400 text-xs">4 min read</span>
+                    <h3 class="text-xl font-semibold mb-3">
+                        Quality Control in Steel Detailing: A Complete Guide
+                    </h3>
+                    <p class="text-gray-300 mb-4 line-clamp-3">
+                        Learn essential quality control procedures for steel detailing projects including 
+                        verification methods, common errors to avoid, and documentation standards...
+                    </p>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <img src="https://picsum.photos/seed/author3/24/24.jpg" alt="Author">
+                            <span>Mike Johnson</span>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2">Digital Tools for Modern Detailing</h3>
-                        <p class="text-gray-300 text-sm mb-4">Explore the latest digital tools transforming the steel detailing industry.</p>
-                        <button class="text-green-400 hover:text-green-300 text-sm font-medium">Read More →</button>
+                        <span>•</span>
+                        <span>12 min read</span>
                     </div>
                 </article>
 
-                <article class="blog-card nvidia-card rounded-xl overflow-hidden">
-                    <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-600 flex items-center justify-center">
-                        <i data-lucide="users" class="h-16 w-16 text-white opacity-50"></i>
+                <!-- Blog Post 3 -->
+                <article class="blog-card nvidia-card rounded-xl p-6 cursor-pointer">
+                    <img src="https://picsum.photos/seed/blog3/400/250.jpg" 
+                         alt="Blog post" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="mb-3">
+                        <span class="category-badge">Tips & Tricks</span>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="px-2 py-1 bg-purple-900/30 text-purple-300 rounded-full text-xs">Management</span>
-                            <span class="text-gray-400 text-xs">6 min read</span>
+                    <h3 class="text-xl font-semibold mb-3">
+                        10 Tekla Shortcuts Every Detailer Should Know
+                    </h3>
+                    <p class="text-gray-300 mb-4 line-clamp-3">
+                        Boost your productivity with these essential Tekla Structures shortcuts and 
+                        time-saving techniques that experienced detailers use daily...
+                    </p>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <img src="https://picsum.photos/seed/author4/24/24.jpg" alt="Author">
+                            <span>Emily Davis</span>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2">Steel Detailing Strategies</h3>
-                        <p class="text-gray-300 text-sm mb-4">Effective strategies for successful steel detailing projects.</p>
-                        <button class="text-green-400 hover:text-green-300 text-sm font-medium">Read More →</button>
+                        <span>•</span>
+                        <span>6 min read</span>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card nvidia-card rounded-xl p-6 cursor-pointer">
+                    <img src="https://picsum.photos/seed/blog4/400/250.jpg" 
+                         alt="Blog post" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="mb-3">
+                        <span class="category-badge">Case Study</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">
+                        Stadium Project: Complex Roof System Detailing
+                    </h3>
+                    <p class="text-gray-300 mb-4 line-clamp-3">
+                        A detailed case study of the steel detailing challenges and solutions implemented 
+                        in a major stadium construction project with complex roof geometry...
+                    </p>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <img src="https://picsum.photos/seed/author5/24/24.jpg" alt="Author">
+                            <span>David Wilson</span>
+                        </div>
+                        <span>•</span>
+                        <span>15 min read</span>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-card nvidia-card rounded-xl p-6 cursor-pointer">
+                    <img src="https://picsum.photos/seed/blog5/400/250.jpg" 
+                         alt="Blog post" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="mb-3">
+                        <span class="category-badge">Industry News</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">
+                        New AISC Standards: What Detailers Need to Know
+                    </h3>
+                    <p class="text-gray-300 mb-4 line-clamp-3">
+                        Stay updated with the latest AISC standards and understand how these changes 
+                        impact your daily detailing work and project requirements...
+                    </p>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <img src="https://picsum.photos/seed/author6/24/24.jpg" alt="Author">
+                            <span>Lisa Anderson</span>
+                        </div>
+                        <span>•</span>
+                        <span>10 min read</span>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-card nvidia-card rounded-xl p-6 cursor-pointer">
+                    <img src="https://picsum.photos/seed/blog6/400/250.jpg" 
+                         alt="Blog post" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="mb-3">
+                        <span class="category-badge">Tutorial</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">
+                        Advanced Modeling Techniques for Curved Steel Structures
+                    </h3>
+                    <p class="text-gray-300 mb-4 line-clamp-3">
+                        Master the art of modeling curved steel elements in Tekla with advanced 
+                        techniques for parametric modeling and precision control...
+                    </p>
+                    <div class="blog-meta">
+                        <div class="blog-author">
+                            <img src="https://picsum.photos/seed/author7/24/24.jpg" alt="Author">
+                            <span>Robert Taylor</span>
+                        </div>
+                        <span>•</span>
+                        <span>18 min read</span>
                     </div>
                 </article>
             </div>
         </section>
+
+        <!-- Load More -->
+        <div class="text-center">
+            <button class="nvidia-button px-8 py-3 rounded-xl text-white font-semibold">
+                Load More Articles
+            </button>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -178,16 +368,16 @@
                         <div class="w-8 h-8 nvidia-gradient rounded-lg flex items-center justify-center">
                             <i data-lucide="tool" class="h-4 w-4 text-white"></i>
                         </div>
-                        <h3 class="text-lg font-bold">detailertools.com</h3>
+                        <h3 class="text-lg font-bold">DetailerTools.com</h3>
                     </div>
-                    <p class="text-sm text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                    <p class="text-sm text-gray-400">Professional Tekla detailer tools suite built by detailers, for detailers.</p>
                 </div>
                 
                 <div>
                     <h4 class="font-semibold mb-4">Tools</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="checker.html" class="hover:text-white transition-colors">Word Checker</a></li>
-                        <li><a href="calculator.html" class="hover:text-white transition-colors">Calculator</a></li>
+                        <li><a href="calculator.html" class="hover:text-white transition-colors">Feet Inch Calc</a></li>
                     </ul>
                 </div>
                 
@@ -206,67 +396,85 @@
                             <i data-lucide="github" class="h-5 w-5"></i>
                         </button>
                         <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
-                            <i data-lucide="twitter" class="h-5 w-5"></i>
-                        </button>
-                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
                             <i data-lucide="linkedin" class="h-5 w-5"></i>
                         </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <!-- X.com icon -->
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-2.393 7.724h-2.906l-2.393-7.724h-3.308c-1.4 0-2.314.617-2.314 1.374v5.882c0 .757.914 1.374 2.314 1.374h1.146v3.219h-1.146c-1.933 0-3.464-1.567-3.464-3.5v-5.882c0-1.933 1.531-3.5 3.464-3.5h1.146v-3.219z"/>
+                            </svg>
+                        </button>
                     </div>
+                    <p class="text-sm text-gray-400 mt-4">Connect with fellow Tekla detailers</p>
                 </div>
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-                <p>© 2024 detailertools.com. All rights reserved.</p>
+                <p>© 2024 DetailerTools.com. Built with passion for Tekla Steel Detailers.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Netlify Identity
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on('init', user => {
-                if (user) {
-                    document.getElementById('loginBtn').innerHTML = '<i data-lucide="log-out" class="h-5 w-5"></i>';
-                    // Check if admin
-                    if (user.email === 'admin@example.com') { // Replace with actual admin check
-                        document.getElementById('adminPanel').classList.remove('hidden');
-                    }
-                }
-            });
-
-            window.netlifyIdentity.on('login', user => {
-                window.location.reload();
-            });
-
-            window.netlifyIdentity.on('logout', () => {
-                window.location.reload();
-            });
-        }
-
-        document.getElementById('loginBtn').addEventListener('click', () => {
-            if (window.netlifyIdentity.currentUser()) {
-                window.netlifyIdentity.logout();
-            } else {
-                window.netlifyIdentity.open();
-            }
-        });
-
         // Initialize Lucide icons
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
         });
 
         // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const elements = document.querySelectorAll('h1, h2, h3, p');
-            elements.forEach(el => {
-                if (el.textContent.toLowerCase().includes(query)) {
-                    el.style.display = 'block';
-                } else {
-                    el.style.display = 'none';
-                }
+        const searchInput = document.querySelector('.search-input');
+        const searchIcon = document.querySelector('.search-icon');
+
+        searchIcon.addEventListener('click', () => {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                // Implement search functionality
+                console.log('Searching for:', searchTerm);
+                // In real app, this would trigger API call
+            }
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchIcon.click();
+            }
+        });
+
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll('.category-badge, .bg-gray-800');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active state from all buttons
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('category-badge');
+                    btn.classList.add('bg-gray-800');
+                });
+                
+                // Add active state to clicked button
+                button.classList.remove('bg-gray-800');
+                button.classList.add('category-badge');
+                
+                // Implement category filtering
+                console.log('Filtering by:', button.textContent);
+                // In real app, this would filter blog posts
             });
+        });
+
+        // Blog post click handlers
+        const blogCards = document.querySelectorAll('.blog-card');
+        blogCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // In real app, this would navigate to blog post detail
+                console.log('Opening blog post...');
+            });
+        });
+
+        // Load more functionality
+        const loadMoreBtn = document.querySelector('.nvidia-button');
+        loadMoreBtn.addEventListener('click', () => {
+            // Implement load more functionality
+            console.log('Loading more articles...');
+            // In real app, this would load more blog posts via API
         });
     </script>
 </body>

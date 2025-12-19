@@ -1,0 +1,134 @@
+/* Custom Cross Animation - Extracted and Enhanced from Word Cross-Checker */
+.cross-animation-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.cross-animated {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    animation: crossRotate 3s ease-in-out infinite;
+}
+
+.cross-animated::before,
+.cross-animated::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(135deg, #76b900 0%, #8bc34a 50%, #9ccc65 100%);
+    border-radius: 3px;
+    box-shadow: 0 0 20px rgba(118, 185, 0, 0.5);
+}
+
+.cross-animated::before {
+    width: 100%;
+    height: 4px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    animation: crossPulse 2s ease-in-out infinite;
+}
+
+.cross-animated::after {
+    width: 4px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: crossPulse 2s ease-in-out infinite 0.5s;
+}
+
+.cross-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.cross-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #76b900;
+    border-radius: 50%;
+    animation: particleFloat 4s ease-in-out infinite;
+}
+
+.cross-particle:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.cross-particle:nth-child(2) {
+    top: 20%;
+    right: 20%;
+    animation-delay: 1s;
+}
+
+.cross-particle:nth-child(3) {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.cross-particle:nth-child(4) {
+    bottom: 20%;
+    right: 20%;
+    animation-delay: 3s;
+}
+
+@keyframes crossRotate {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    25% { transform: translate(-50%, -50%) rotate(90deg) scale(1.1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1); }
+    75% { transform: translate(-50%, -50%) rotate(270deg) scale(1.1); }
+}
+
+@keyframes crossPulse {
+    0%, 100% { 
+        opacity: 1; 
+        box-shadow: 0 0 20px rgba(118, 185, 0, 0.5);
+    }
+    50% { 
+        opacity: 0.7; 
+        box-shadow: 0 0 30px rgba(118, 185, 0, 0.8);
+    }
+}
+
+@keyframes particleFloat {
+    0% { 
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% { 
+        transform: scale(1) rotate(180deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Enhanced hover effects */
+.cross-animation-container:hover .cross-animated {
+    animation-duration: 1.5s;
+}
+
+.cross-animation-container:hover .cross-animated::before,
+.cross-animation-container:hover .cross-animated::after {
+    background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 50%, #76b900 100%);
+    box-shadow: 0 0 30px rgba(118, 185, 0, 0.8);
+}
+
+.cross-animation-container:hover .cross-particle {
+    background: #8bc34a;
+    animation-duration: 2s;
+}
