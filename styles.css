@@ -1,0 +1,157 @@
+/* NVIDIA-inspired custom styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    min-height: 100vh;
+}
+
+.nvidia-gradient {
+    background: linear-gradient(135deg, #76b900 0%, #8bc34a 50%, #9ccc65 100%);
+}
+
+.dark-glass {
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nvidia-card {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(40, 40, 40, 0.9) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nvidia-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(118, 185, 0, 0.3);
+}
+
+.nvidia-button {
+    background: linear-gradient(135deg, #76b900 0%, #8bc34a 100%);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nvidia-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(118, 185, 0, 0.3);
+}
+
+.nvidia-button:active {
+    transform: translateY(0);
+}
+
+.nvidia-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.nvidia-button:hover::before {
+    left: 100%;
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #76b900 0%, #8bc34a 100%);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, rgba(118, 185, 0, 0.1) 0%, rgba(139, 195, 74, 0.05) 100%);
+}
+
+.feature-card {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(118, 185, 0, 0.2);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(118, 185, 0, 0.5);
+    border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(118, 185, 0, 0.7);
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+.glow-text {
+    text-shadow: 0 0 20px rgba(118, 185, 0, 0.5);
+}
+
+.blog-card {
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(118, 185, 0, 0.5);
+}
+
+.forum-post {
+    transition: all 0.3s ease;
+}
+
+.forum-post:hover {
+    background: rgba(118, 185, 0, 0.05);
+    border-left-color: #76b900;
+}
+
+.calculator-btn {
+    transition: all 0.2s ease;
+}
+
+.calculator-btn:hover {
+    transform: scale(1.05);
+}
+
+.calculator-btn:active {
+    transform: scale(0.95);
+}

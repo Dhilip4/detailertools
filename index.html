@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detailertools.com - Precision tools designed by detailers, for detailers</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="dark-glass sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold glow-text">detailertools.com</h1>
+                            <p class="text-xs text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                        </div>
+                    </a>
+                    
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="index.html" class="nav-link active text-gray-300 hover:text-white font-medium">Home</a>
+                        <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium">Word Checker</a>
+                        <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium">Calculator</a>
+                        <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium">Blog</a>
+                        <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium">Forum</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search tools and content..." class="bg-gray-800 text-white rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <i data-lucide="search" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="bell" class="h-5 w-5"></i>
+                    </button>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="user" class="h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden dark-glass border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-around">
+                <a href="index.html" class="nav-link active text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="home" class="h-4 w-4 mx-auto mb-1"></i>
+                    Home
+                </a>
+                <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="search" class="h-4 w-4 mx-auto mb-1"></i>
+                    Checker
+                </a>
+                <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="calculator" class="h-4 w-4 mx-auto mb-1"></i>
+                    Calc
+                </a>
+                <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="file-text" class="h-4 w-4 mx-auto mb-1"></i>
+                    Blog
+                </a>
+                <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="message-circle" class="h-4 w-4 mx-auto mb-1"></i>
+                    Forum
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="hero-gradient rounded-2xl p-8 mb-12 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 glow-text" data-aos="fade-up" data-aos-delay="200">detailertools.com</h1>
+            <p class="text-xl text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="600">
+                <a href="checker.html" class="nvidia-button px-8 py-3 rounded-xl text-white font-semibold">
+                    <i data-lucide="search" class="h-5 w-5 inline mr-2"></i>
+                    Try Word Checker
+                </a>
+                <a href="calculator.html" class="px-8 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl text-white font-semibold transition-colors">
+                    <i data-lucide="calculator" class="h-5 w-5 inline mr-2"></i>
+                    Open Calculator
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="mb-12" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-6">Our Tools</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" data-aos="zoom-in" data-aos-delay="100" onclick="window.location.href='checker.html'">
+                    <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="search" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Word Checker</h3>
+                    <p class="text-sm text-gray-400">Cross-check erection drawings with bill of materials</p>
+                </div>
+                
+                <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" data-aos="zoom-in" data-aos-delay="200" onclick="window.location.href='calculator.html'">
+                    <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="calculator" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Feet & Inch Calculator</h3>
+                    <p class="text-sm text-gray-400">Advanced steel detailing calculations</p>
+                </div>
+                
+                <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" data-aos="zoom-in" data-aos-delay="300" onclick="window.location.href='blog.html'">
+                    <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="file-text" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Blog</h3>
+                    <p class="text-sm text-gray-400">Steel detailing tips and best practices</p>
+                </div>
+                
+                <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" data-aos="zoom-in" data-aos-delay="400" onclick="window.location.href='forum.html'">
+                    <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="message-circle" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Forum</h3>
+                    <p class="text-sm text-gray-400">Connect with steel detailers</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-6">Recent Activity</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="nvidia-card rounded-xl p-6" data-aos="slide-right">
+                    <h3 class="text-lg font-semibold mb-4">Latest Blog Posts</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                            <p class="text-sm">Understanding Steel Beam Calculations</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                            <p class="text-sm">Best Practices for Material Takeoffs</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                            <p class="text-sm">Digital Tools for Modern Detailing</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nvidia-card rounded-xl p-6" data-aos="slide-left">
+                    <h3 class="text-lg font-semibold mb-4">Forum Discussions</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                            <p class="text-sm">Tips for Accurate Estimating</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                            <p class="text-sm">Tekla Software Recommendations</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                            <p class="text-sm">Steel Detailing Strategies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dark-glass border-t border-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-4 w-4 text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">detailertools.com</h3>
+                    </div>
+                    <p class="text-sm text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Tools</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="checker.html" class="hover:text-white transition-colors">Word Checker</a></li>
+                        <li><a href="calculator.html" class="hover:text-white transition-colors">Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="forum.html" class="hover:text-white transition-colors">Forum</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="github" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="twitter" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="linkedin" class="h-5 w-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>© 2024 detailertools.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            // Simple search: filter visible content
+            const elements = document.querySelectorAll('h1, h2, h3, p, .feature-card h3');
+            elements.forEach(el => {
+                if (el.textContent.toLowerCase().includes(query)) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="dark-glass sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold glow-text">ConstructTools Pro</h1>
+                            <p class="text-xs text-gray-400">Professional Construction Suite</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:flex items-center space-x-6">
+                        <button onclick="showPage('home')" class="nav-link active text-gray-300 hover:text-white font-medium">
+                            Home
+                        </button>
+                        <button onclick="showPage('checker')" class="nav-link text-gray-300 hover:text-white font-medium">
+                            Word Checker
+                        </button>
+                        <button onclick="showPage('calculator')" class="nav-link text-gray-300 hover:text-white font-medium">
+                            Calculator
+                        </button>
+                        <button onclick="showPage('blog')" class="nav-link text-gray-300 hover:text-white font-medium">
+                            Blog
+                        </button>
+                        <button onclick="showPage('forum')" class="nav-link text-gray-300 hover:text-white font-medium">
+                            Forum
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="search" class="h-5 w-5"></i>
+                    </button>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="bell" class="h-5 w-5"></i>
+                    </button>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="user" class="h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden dark-glass border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-around">
+                <button onclick="showPage('home')" class="nav-link active text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="home" class="h-4 w-4 mx-auto mb-1"></i>
+                    Home
+                </button>
+                <button onclick="showPage('checker')" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="search" class="h-4 w-4 mx-auto mb-1"></i>
+                    Checker
+                </button>
+                <button onclick="showPage('calculator')" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="calculator" class="h-4 w-4 mx-auto mb-1"></i>
+                    Calc
+                </button>
+                <button onclick="showPage('blog')" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="file-text" class="h-4 w-4 mx-auto mb-1"></i>
+                    Blog
+                </button>
+                <button onclick="showPage('forum')" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="message-circle" class="h-4 w-4 mx-auto mb-1"></i>
+                    Forum
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Home Page -->
+        <div id="homePage" class="page-section active">
+            <!-- Hero Section -->
+            <section class="hero-gradient rounded-2xl p-8 mb-12 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 glow-text">ConstructTools Pro</h1>
+                <p class="text-xl text-gray-300 mb-8">Professional Construction Management Suite</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showPage('checker')" class="nvidia-button px-8 py-3 rounded-xl text-white font-semibold">
+                        <i data-lucide="search" class="h-5 w-5 inline mr-2"></i>
+                        Try Word Checker
+                    </button>
+                    <button onclick="showPage('calculator')" class="px-8 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl text-white font-semibold transition-colors">
+                        <i data-lucide="calculator" class="h-5 w-5 inline mr-2"></i>
+                        Open Calculator
+                    </button>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Our Tools</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" onclick="showPage('checker')">
+                        <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="search" class="h-8 w-8 text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Word Checker</h3>
+                        <p class="text-sm text-gray-400">Cross-check erection drawings with bill of materials</p>
+                    </div>
+                    
+                    <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" onclick="showPage('calculator')">
+                        <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="calculator" class="h-8 w-8 text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Calculator</h3>
+                        <p class="text-sm text-gray-400">Advanced construction calculations</p>
+                    </div>
+                    
+                    <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" onclick="showPage('blog')">
+                        <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="file-text" class="h-8 w-8 text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Blog</h3>
+                        <p class="text-sm text-gray-400">Construction tips and best practices</p>
+                    </div>
+                    
+                    <div class="feature-card nvidia-card rounded-xl p-6 text-center cursor-pointer" onclick="showPage('forum')">
+                        <div class="w-16 h-16 nvidia-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="message-circle" class="h-8 w-8 text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Forum</h3>
+                        <p class="text-sm text-gray-400">Connect with construction professionals</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section>
+                <h2 class="text-2xl font-bold mb-6">Recent Activity</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="nvidia-card rounded-xl p-6">
+                        <h3 class="text-lg font-semibold mb-4">Latest Blog Posts</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                                <p class="text-sm">Understanding Steel Beam Calculations</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                                <p class="text-sm">Best Practices for Material Takeoffs</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                                <p class="text-sm">Digital Tools for Modern Construction</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="nvidia-card rounded-xl p-6">
+                        <h3 class="text-lg font-semibold mb-4">Forum Discussions</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                                <p class="text-sm">Tips for Accurate Estimating</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                                <p class="text-sm">Software Recommendations</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 nvidia-gradient rounded-full"></div>
+                                <p class="text-sm">Project Management Strategies</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Word Checker Page -->
+        <div id="checkerPage" class="page-section">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">Word Cross-Checker</h1>
+                <p class="text-gray-400">Compare erection drawings with bill of materials</p>
+            </div>
+
+            <!-- Error Alert -->
+            <div id="errorAlert" class="hidden bg-red-900/20 border border-red-500/30 text-red-200 px-6 py-4 rounded-xl flex items-center gap-3 mb-6">
+                <i data-lucide="alert-circle" class="h-5 w-5 flex-shrink-0"></i>
+                <span id="errorMessage"></span>
+            </div>
+
+            <!-- Upload Section -->
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold mb-6">File Upload</h2>
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <!-- Document Upload -->
+                    <div class="nvidia-card rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 nvidia-gradient rounded-lg flex items-center justify-center mr-4">
+                                <i data-lucide="file-text" class="h-6 w-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold">Text Document</h3>
+                                <p class="text-sm text-gray-400">Erection drawing (PDF conversion)</p>
+                            </div>
+                        </div>
+                        
+                        <div id="docDropZone" class="drop-zone border-2 border-dashed border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-green-500 transition-colors">
+                            <input type="file" id="docFileInput" accept=".txt" class="hidden">
+                            <div class="space-y-4">
+                                <i data-lucide="upload-cloud" class="h-12 w-12 mx-auto text-gray-400"></i>
+                                <div>
+                                    <p class="text-sm font-medium">Click to upload or drag and drop</p>
+                                    <p class="text-xs text-gray-500">TXT files only • Max 10MB</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="docFileInfo" class="hidden mt-4 p-4 bg-green-900/20 border border-green-500/30 rounded-xl flex items-center gap-3">
+                            <i data-lucide="check-circle" class="h-5 w-5 text-green-400"></i>
+                            <div>
+                                <p id="docFileName" class="text-sm font-medium text-green-200"></p>
+                                <p id="docFileSize" class="text-xs text-green-400"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Word List Upload -->
+                    <div class="nvidia-card rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 nvidia-gradient rounded-lg flex items-center justify-center mr-4">
+                                <i data-lucide="list-checks" class="h-6 w-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold">Bill of Materials</h3>
+                                <p class="text-sm text-gray-400">Word list (word,expected_count)</p>
+                            </div>
+                        </div>
+                        
+                        <div id="wordListDropZone" class="drop-zone border-2 border-dashed border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-green-500 transition-colors">
+                            <input type="file" id="wordListFileInput" accept=".txt,.csv" class="hidden">
+                            <div class="space-y-4">
+                                <i data-lucide="upload-cloud" class="h-12 w-12 mx-auto text-gray-400"></i>
+                                <div>
+                                    <p class="text-sm font-medium">Click to upload or drag and drop</p>
+                                    <p class="text-xs text-gray-500">TXT or CSV files • Max 10MB</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="wordListFileInfo" class="hidden mt-4 p-4 bg-green-900/20 border border-green-500/30 rounded-xl flex items-center gap-3">
+                            <i data-lucide="check-circle" class="h-5 w-5 text-green-400"></i>
+                            <div>
+                                <p id="wordListFileName" class="text-sm font-medium text-green-200"></p>
+                                <p id="wordListFileSize" class="text-xs text-green-400"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold mb-6">Analysis Settings</h2>
+                <div class="nvidia-card rounded-xl p-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-medium flex items-center gap-2">
+                                <i data-lucide="settings" class="h-5 w-5 text-green-400"></i>
+                                Search Configuration
+                            </h3>
+                            
+                            <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
+                                <input type="checkbox" id="caseSensitive" class="w-5 h-5 text-green-600 rounded focus:ring-green-500 focus:ring-2">
+                                <div>
+                                    <span class="text-sm font-medium">Case-sensitive search</span>
+                                    <p class="text-xs text-gray-400">"Part" ≠ "part"</p>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
+                                <input type="checkbox" id="wholeWords" checked class="w-5 h-5 text-green-600 rounded focus:ring-green-500 focus:ring-2">
+                                <div>
+                                    <span class="text-sm font-medium">Match whole words only</span>
+                                    <p class="text-xs text-gray-400">"Part" won't match "Partial"</p>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-medium flex items-center gap-2">
+                                <i data-lucide="info" class="h-5 w-5 text-blue-400"></i>
+                                Recommendations
+                            </h3>
+                            
+                            <div class="p-4 bg-blue-900/20 border border-blue-500/30 rounded-xl">
+                                <h4 class="font-medium mb-2 text-blue-200">For Part Mark Analysis:</h4>
+                                <ul class="text-sm text-gray-300 space-y-1">
+                                    <li>• ✅ Keep both options checked</li>
+                                    <li>• ✅ Use exact part marks</li>
+                                    <li>• ✅ Ensure proper formatting</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process Button -->
+            <section class="flex justify-center mb-8">
+                <button id="processBtn" onclick="processFiles()" disabled class="nvidia-button px-8 py-4 rounded-xl text-white font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 min-w-[200px] justify-center">
+                    <i data-lucide="play" class="h-5 w-5"></i>
+                    <span id="processBtnText">Start Analysis</span>
+                    <div id="processSpinner" class="spinner hidden"></div>
+                </button>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progressContainer" class="hidden mb-8">
+                <div class="nvidia-card rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Processing Analysis</h3>
+                        <span id="progressText" class="text-sm text-gray-400">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                        <div id="progressBar" class="progress-bar h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="hidden">
+                <h2 class="text-xl font-semibold mb-6">Analysis Results</h2>
+                
+                <!-- Statistics Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                    <div class="stat-card bg-gray-800/50 rounded-xl p-4 text-center">
+                        <p id="statTotal" class="text-2xl font-bold text-white">0</p>
+                        <p class="text-sm text-gray-400">Total Words</p>
+                    </div>
+                    <div class="stat-card bg-gray-800/50 rounded-xl p-4 text-center">
+                        <p id="statMatched" class="text-2xl font-bold text-green-400">0</p>
+                        <p class="text-sm text-gray-400">Matched</p>
+                    </div>
+                    <div class="stat-card bg-gray-800/50 rounded-xl p-4 text-center">
+                        <p id="statMismatched" class="text-2xl font-bold text-red-400">0</p>
+                        <p class="text-sm text-gray-400">Mismatched</p>
+                    </div>
+                    <div class="stat-card bg-gray-800/50 rounded-xl p-4 text-center">
+                        <p id="statDifference" class="text-2xl font-bold text-orange-400">0</p>
+                        <p class="text-sm text-gray-400">Total Diff</p>
+                    </div>
+                    <div class="stat-card bg-gray-800/50 rounded-xl p-4 text-center">
+                        <p id="statAccuracy" class="text-2xl font-bold text-blue-400">0%</p>
+                        <p class="text-sm text-gray-400">Accuracy</p>
+                    </div>
+                </div>
+
+                <!-- Results Controls -->
+                <div class="nvidia-card rounded-xl p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold flex items-center gap-2">
+                            <i data-lucide="filter" class="h-5 w-5 text-green-400"></i>
+                            Detailed Results
+                        </h3>
+                        <div class="flex gap-3">
+                            <select id="filterStatus" onchange="filterResults()" class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-green-500 focus:outline-none">
+                                <option value="all">All Items</option>
+                                <option value="matched">Matched Only</option>
+                                <option value="mismatched">Mismatched Only</option>
+                            </select>
+                            <select id="sortBy" onchange="sortResults()" class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-green-500 focus:outline-none">
+                                <option value="word">Sort by Word</option>
+                                <option value="difference">Sort by Difference</option>
+                                <option value="status">Sort by Status</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="resultsList" class="space-y-3 max-h-96 overflow-y-auto scrollbar-thin">
+                        <!-- Results will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Export Buttons -->
+                <div class="flex gap-4 justify-center">
+                    <button onclick="exportResults('txt')" class="px-6 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl transition-colors flex items-center gap-2">
+                        <i data-lucide="file-text" class="h-4 w-4"></i>
+                        Export as TXT
+                    </button>
+                    <button onclick="exportResults('csv')" class="px-6 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl transition-colors flex items-center gap-2">
+                        <i data-lucide="file-spreadsheet" class="h-4 w-4"></i>
+                        Export as CSV
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Calculator Page -->
+        <div id="calculatorPage" class="page-section">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">Construction Calculator</h1>
+                <p class="text-gray-400">Advanced calculations for construction projects</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Calculator Interface -->
+                <div class="nvidia-card rounded-xl p-6">
+                    <h2 class="text-xl font-semibold mb-6">Calculator</h2>
+                    
+                    <!-- Display -->
+                    <div class="bg-gray-900 rounded-lg p-4 mb-6">
+                        <div class="text-right">
+                            <div id="calcHistory" class="text-sm text-gray-400 mb-2 min-h-[20px]"></div>
+                            <div id="calcDisplay" class="text-3xl font-bold text-white">0</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Calculator Buttons -->
+                    <div class="grid grid-cols-4 gap-3">
+                        <!-- Row 1 -->
+                        <button onclick="clearCalc()" class="calculator-btn col-span-2 bg-red-600 hover:bg-red-700 text-white rounded-lg py-4 font-semibold">Clear</button>
+                        <button onclick="deleteLast()" class="calculator-btn bg-orange-600 hover:bg-orange-700 text-white rounded-lg py-4 font-semibold">←</button>
+                        <button onclick="appendOperator('/')" class="calculator-btn bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-4 font-semibold">÷</button>
+                        
+                        <!-- Row 2 -->
+                        <button onclick="appendNumber('7')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">7</button>
+                        <button onclick="appendNumber('8')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">8</button>
+                        <button onclick="appendNumber('9')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">9</button>
+                        <button onclick="appendOperator('*')" class="calculator-btn bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-4 font-semibold">×</button>
+                        
+                        <!-- Row 3 -->
+                        <button onclick="appendNumber('4')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">4</button>
+                        <button onclick="appendNumber('5')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">5</button>
+                        <button onclick="appendNumber('6')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">6</button>
+                        <button onclick="appendOperator('-')" class="calculator-btn bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-4 font-semibold">−</button>
+                        
+                        <!-- Row 4 -->
+                        <button onclick="appendNumber('1')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">1</button>
+                        <button onclick="appendNumber('2')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">2</button>
+                        <button onclick="appendNumber('3')" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">3</button>
+                        <button onclick="appendOperator('+')" class="calculator-btn bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-4 font-semibold">+</button>
+                        
+                        <!-- Row 5 -->
+                        <button onclick="appendNumber('0')" class="calculator-btn col-span-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">0</button>
+                        <button onclick="appendDecimal()" class="calculator-btn bg-gray-800 hover:bg-gray-700 text-white rounded-lg py-4 font-semibold">.</button>
+                        <button onclick="calculate()" class="calculator-btn nvidia-gradient text-white rounded-lg py-4 font-semibold">=</button>
+                    </div>
+                </div>
+
+                <!-- Construction Calculations -->
+                <div class="space-y-6">
+                    <!-- Area Calculator -->
+                    <div class="nvidia-card rounded-xl p-6">
+                        <h3 class="text-lg font-semibold mb-4">Area Calculator</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Length (m)</label>
+                                <input type="number" id="areaLength" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-green-500 focus:outline-none" placeholder="Enter length">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Width (m)</label>
+                                <input type="number" id="areaWidth" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-green-500 focus:outline-none" placeholder="Enter width">
+                            </div>
+                            <button onclick="calculateArea()" class="w-full nvidia-button py-2 rounded-lg text-white font-semibold">Calculate Area</button>
+                            <div id="areaResult" class="hidden p-4 bg-green-900/20 border border-green-500/30 rounded-lg">
+                                <p class="text-green-200">Area: <span id="areaValue" class="font-bold">0</span> m²</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Volume Calculator -->
+                    <div class="nvidia-card rounded-xl p-6">
+                        <h3 class="text-lg font-semibold mb-4">Volume Calculator</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Length (m)</label>
+                                <input type="number" id="volumeLength" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-green-500 focus:outline-none" placeholder="Enter length">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Width (m)</label>
+                                <input type="number" id="volumeWidth" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-green-500 focus:outline-none" placeholder="Enter width">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Height (m)</label>
+                                <input type="number" id="volumeHeight" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-green-500 focus:outline-none" placeholder="Enter height">
+                            </div>
+                            <button onclick="calculateVolume()" class="w-full nvidia-button py-2 rounded-lg text-white font-semibold">Calculate Volume</button>
+                            <div id="volumeResult" class="hidden p-4 bg-green-900/20 border border-green-500/30 rounded-lg">
+                                <p class="text-green-200">Volume: <span id="volumeValue" class="font-bold">0</span> m³</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Page -->
+        <div id="blogPage" class="page-section">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">Construction Blog</h1>
+                <p class="text-gray-400">Tips, tutorials, and best practices for construction professionals</p>
+            </div>
+
+            <!-- Featured Post -->
+            <section class="mb-12">
+                <div class="nvidia-card rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-r from-green-600 to-blue-600 flex items-center justify-center">
+                        <i data-lucide="file-text" class="h-24 w-24 text-white opacity-50"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm">Featured</span>
+                            <span class="text-gray-400 text-sm">5 min read</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4">Understanding Steel Beam Calculations</h2>
+                        <p class="text-gray-300 mb-6">Learn the fundamentals of steel beam calculations and how to ensure structural integrity in your construction projects.</p>
+                        <button class="nvidia-button px-6 py-2 rounded-lg text-white font-semibold">Read More</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Posts Grid -->
+            <section>
+                <h2 class="text-2xl font-bold mb-6">Recent Posts</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="blog-card nvidia-card rounded-xl overflow-hidden">
+                        <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-600 flex items-center justify-center">
+                            <i data-lucide="calculator" class="h-16 w-16 text-white opacity-50"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="px-2 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs">Calculator</span>
+                                <span class="text-gray-400 text-xs">3 min read</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Best Practices for Material Takeoffs</h3>
+                            <p class="text-gray-300 text-sm mb-4">Master the art of accurate material estimation with these proven techniques.</p>
+                            <button class="text-green-400 hover:text-green-300 text-sm font-medium">Read More →</button>
+                        </div>
+                    </article>
+
+                    <article class="blog-card nvidia-card rounded-xl overflow-hidden">
+                        <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-600 flex items-center justify-center">
+                            <i data-lucide="tool" class="h-16 w-16 text-white opacity-50"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="px-2 py-1 bg-orange-900/30 text-orange-300 rounded-full text-xs">Tools</span>
+                                <span class="text-gray-400 text-xs">4 min read</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Digital Tools for Modern Construction</h3>
+                            <p class="text-gray-300 text-sm mb-4">Explore the latest digital tools transforming the construction industry.</p>
+                            <button class="text-green-400 hover:text-green-300 text-sm font-medium">Read More →</button>
+                        </div>
+                    </article>
+
+                    <article class="blog-card nvidia-card rounded-xl overflow-hidden">
+                        <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-600 flex items-center justify-center">
+                            <i data-lucide="users" class="h-16 w-16 text-white opacity-50"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="px-2 py-1 bg-purple-900/30 text-purple-300 rounded-full text-xs">Management</span>
+                                <span class="text-gray-400 text-xs">6 min read</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Project Management Strategies</h3>
+                            <p class="text-gray-300 text-sm mb-4">Effective project management techniques for construction success.</p>
+                            <button class="text-green-400 hover:text-green-300 text-sm font-medium">Read More →</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <!-- Forum Page -->
+        <div id="forumPage" class="page-section">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">Community Forum</h1>
+                <p class="text-gray-400">Connect with construction professionals and share knowledge</p>
+            </div>
+
+            <!-- Forum Categories -->
+            <section class="mb-8">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
+                        <i data-lucide="message-circle" class="h-12 w-12 text-green-400 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-2">General Discussion</h3>
+                        <p class="text-sm text-gray-400 mb-4">General construction topics</p>
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-green-400">156</span> topics • 
+                            <span class="font-bold text-green-400">2.3k</span> posts
+                        </div>
+                    </div>
+
+                    <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
+                        <i data-lucide="help-circle" class="h-12 w-12 text-blue-400 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-2">Q&A</h3>
+                        <p class="text-sm text-gray-400 mb-4">Get help with specific problems</p>
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-blue-400">89</span> topics • 
+                            <span class="font-bold text-blue-400">1.1k</span> posts
+                        </div>
+                    </div>
+
+                    <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
+                        <i data-lucide="lightbulb" class="h-12 w-12 text-orange-400 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-2">Tips & Tricks</h3>
+                        <p class="text-sm text-gray-400 mb-4">Share your best practices</p>
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-orange-400">67</span> topics • 
+                            <span class="font-bold text-orange-400">845</span> posts
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Discussions -->
+            <section>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold">Recent Discussions</h2>
+                    <button class="nvidia-button px-4 py-2 rounded-lg text-white font-semibold">
+                        <i data-lucide="plus" class="h-4 w-4 inline mr-2"></i>
+                        New Topic
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold mb-2">Tips for Accurate Estimating</h3>
+                                <p class="text-gray-300 text-sm mb-4">What are your best practices for creating accurate construction estimates? I've been struggling with...</p>
+                                <div class="flex items-center gap-4 text-sm text-gray-400">
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="user" class="h-4 w-4"></i>
+                                        JohnDoe
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="message-circle" class="h-4 w-4"></i>
+                                        23 replies
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="eye" class="h-4 w-4"></i>
+                                        156 views
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="clock" class="h-4 w-4"></i>
+                                        2 hours ago
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-sm">Q&A</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold mb-2">Software Recommendations</h3>
+                                <p class="text-gray-300 text-sm mb-4">Looking for recommendations on construction management software. What do you guys use and why?</p>
+                                <div class="flex items-center gap-4 text-sm text-gray-400">
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="user" class="h-4 w-4"></i>
+                                        SarahMiller
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="message-circle" class="h-4 w-4"></i>
+                                        45 replies
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="eye" class="h-4 w-4"></i>
+                                        892 views
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="clock" class="h-4 w-4"></i>
+                                        5 hours ago
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <span class="px-3 py-1 bg-green-900/30 text-green-300 rounded-full text-sm">General</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold mb-2">Project Management Strategies</h3>
+                                <p class="text-gray-300 text-sm mb-4">Share your favorite project management strategies and tools that have helped you complete projects on time...</p>
+                                <div class="flex items-center gap-4 text-sm text-gray-400">
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="user" class="h-4 w-4"></i>
+                                        MikeJohnson
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="message-circle" class="h-4 w-4"></i>
+                                        67 replies
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="eye" class="h-4 w-4"></i>
+                                        1.2k views
+                                    </span>
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="clock" class="h-4 w-4"></i>
+                                        1 day ago
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <span class="px-3 py-1 bg-orange-900/30 text-orange-300 rounded-full text-sm">Tips</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dark-glass border-t border-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-4 w-4 text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">ConstructTools Pro</h3>
+                    </div>
+                    <p class="text-sm text-gray-400">Professional construction management suite for modern builders.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Tools</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" onclick="showPage('checker')" class="hover:text-white transition-colors">Word Checker</a></li>
+                        <li><a href="#" onclick="showPage('calculator')" class="hover:text-white transition-colors">Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" onclick="showPage('blog')" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" onclick="showPage('forum')" class="hover:text-white transition-colors">Forum</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="github" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="twitter" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="linkedin" class="h-5 w-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>© 2024 ConstructTools Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global state
+        let docFile = null;
+        let wordListFile = null;
+        let docText = '';
+        let wordList = [];
+        let results = [];
+        let currentPage = 'home';
+
+        // Calculator state
+        let calcDisplay = '0';
+        let calcHistory = '';
+        let calcNewNumber = true;
+        let calcOperation = null;
+        let calcPreviousValue = null;
+
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+
+        // Page Navigation
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(page + 'Page').classList.add('active');
+            
+            // Add active class to selected nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.textContent.toLowerCase().includes(page) || 
+                    (page === 'checker' && link.textContent.includes('Checker')) ||
+                    (page === 'calculator' && link.textContent.includes('Calc'))) {
+                    link.classList.add('active');
+                }
+            });
+            
+            currentPage = page;
+            
+            // Re-initialize Lucide icons for new content
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        }
+
+        // Word Checker Functions
+        function setupFileUpload() {
+            // Document file upload
+            const docDropZone = document.getElementById('docDropZone');
+            const docFileInput = document.getElementById('docFileInput');
+            
+            docDropZone.addEventListener('click', () => docFileInput.click());
+            
+            docDropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                docDropZone.classList.add('drag-over');
+            });
+            
+            docDropZone.addEventListener('dragleave', () => {
+                docDropZone.classList.remove('drag-over');
+            });
+            
+            docDropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                docDropZone.classList.remove('drag-over');
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && files[0].type === 'text/plain') {
+                    handleDocFile(files[0]);
+                }
+            });
+            
+            docFileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleDocFile(e.target.files[0]);
+                }
+            });
+            
+            // Word list file upload
+            const wordListDropZone = document.getElementById('wordListDropZone');
+            const wordListFileInput = document.getElementById('wordListFileInput');
+            
+            wordListDropZone.addEventListener('click', () => wordListFileInput.click());
+            
+            wordListDropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                wordListDropZone.classList.add('drag-over');
+            });
+            
+            wordListDropZone.addEventListener('dragleave', () => {
+                wordListDropZone.classList.remove('drag-over');
+            });
+            
+            wordListDropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                wordListDropZone.classList.remove('drag-over');
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && (files[0].type === 'text/plain' || files[0].name.endsWith('.csv'))) {
+                    handleWordListFile(files[0]);
+                }
+            });
+            
+            wordListFileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleWordListFile(e.target.files[0]);
+                }
+            });
+        }
+
+        async function handleDocFile(file) {
+            try {
+                const text = await file.text();
+                docFile = file;
+                docText = text;
+                
+                // Update UI
+                document.getElementById('docFileInfo').classList.remove('hidden');
+                document.getElementById('docFileName').textContent = file.name;
+                document.getElementById('docFileSize').textContent = formatFileSize(file.size);
+                
+                hideError();
+                updateProcessButton();
+            } catch (error) {
+                showError('Failed to read document file');
+            }
+        }
+
+        async function handleWordListFile(file) {
+            try {
+                const text = await file.text();
+                wordListFile = file;
+                wordList = parseWordList(text);
+                
+                // Update UI
+                document.getElementById('wordListFileInfo').classList.remove('hidden');
+                document.getElementById('wordListFileName').textContent = file.name;
+                document.getElementById('wordListFileSize').textContent = formatFileSize(file.size);
+                
+                hideError();
+                updateProcessButton();
+            } catch (error) {
+                showError('Failed to read word list file');
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function parseWordList(content) {
+            const lines = content.split('\n');
+            const wordList = [];
+            
+            lines.forEach(line => {
+                const trimmedLine = line.trim();
+                if (trimmedLine) {
+                    const parts = trimmedLine.split(',');
+                    if (parts.length >= 2) {
+                        const word = parts[0].trim();
+                        const expectedCount = parseInt(parts[1].trim(), 10);
+                        if (word && !isNaN(expectedCount)) {
+                            wordList.push({ word, expectedCount });
+                        }
+                    }
+                }
+            });
+            
+            return wordList;
+        }
+
+        function updateProcessButton() {
+            const processBtn = document.getElementById('processBtn');
+            if (docFile && wordListFile) {
+                processBtn.disabled = false;
+            } else {
+                processBtn.disabled = true;
+            }
+        }
+
+        async function processFiles() {
+            if (!docText || wordList.length === 0) {
+                showError('Please upload both document and word list files');
+                return;
+            }
+
+            // Show loading state
+            document.getElementById('processBtnText').textContent = 'Analyzing...';
+            document.getElementById('processSpinner').classList.remove('hidden');
+            document.getElementById('progressContainer').classList.remove('hidden');
+            document.getElementById('processBtn').disabled = true;
+
+            const caseSensitive = document.getElementById('caseSensitive').checked;
+            const wholeWords = document.getElementById('wholeWords').checked;
+            
+            const checkResults = [];
+            
+            for (let i = 0; i < wordList.length; i++) {
+                const { word, expectedCount } = wordList[i];
+                const progress = (i / wordList.length) * 100;
+                
+                // Update progress
+                document.getElementById('progressBar').style.width = progress + '%';
+                document.getElementById('progressText').textContent = Math.round(progress) + '%';
+                
+                let actualCount = 0;
+                
+                if (wholeWords) {
+                    const flags = 'g' + (caseSensitive ? '' : 'i');
+                    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const pattern = '\\b' + escapedWord + '\\b';
+                    
+                    try {
+                        const regex = new RegExp(pattern, flags);
+                        actualCount = Array.from(docText.matchAll(regex)).length;
+                    } catch (e) {
+                        const processedDocText = caseSensitive ? docText : docText.toLowerCase();
+                        const searchTarget = caseSensitive ? word : word.toLowerCase();
+                        
+                        let lastIndex = -1;
+                        while ((lastIndex = processedDocText.indexOf(searchTarget, lastIndex + 1)) !== -1) {
+                            actualCount++;
+                        }
+                    }
+                } else {
+                    const processedDocText = caseSensitive ? docText : docText.toLowerCase();
+                    const searchTarget = caseSensitive ? word : word.toLowerCase();
+                    
+                    let lastIndex = -1;
+                    while ((lastIndex = processedDocText.indexOf(searchTarget, lastIndex + 1)) !== -1) {
+                        actualCount++;
+                    }
+                }
+
+                const status = actualCount === expectedCount ? 'MATCHED' : 'MISMATCH';
+                const difference = actualCount - expectedCount;
+                
+                checkResults.push({
+                    word,
+                    expectedCount,
+                    actualCount,
+                    status,
+                    difference
+                });
+            }
+            
+            // Complete progress
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('progressText').textContent = '100%';
+            
+            results = checkResults;
+            
+            // Update UI
+            updateResults();
+            
+            // Reset loading state
+            setTimeout(() => {
+                document.getElementById('processBtnText').textContent = 'Start Analysis';
+                document.getElementById('processSpinner').classList.add('hidden');
+                document.getElementById('progressContainer').classList.add('hidden');
+                document.getElementById('processBtn').disabled = false;
+                
+                // Show results section
+                document.getElementById('resultsSection').classList.remove('hidden');
+                
+                // Scroll to results
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
+        }
+
+        function updateResults() {
+            // Update statistics
+            const matched = results.filter(r => r.status === 'MATCHED');
+            const mismatched = results.filter(r => r.status === 'MISMATCH');
+            const totalDifference = mismatched.reduce((sum, r) => sum + Math.abs(r.difference), 0);
+            const accuracy = results.length > 0 ? (matched.length / results.length * 100).toFixed(1) : '0';
+            
+            document.getElementById('statTotal').textContent = results.length;
+            document.getElementById('statMatched').textContent = matched.length;
+            document.getElementById('statMismatched').textContent = mismatched.length;
+            document.getElementById('statDifference').textContent = totalDifference;
+            document.getElementById('statAccuracy').textContent = accuracy + '%';
+            
+            // Display results
+            displayResults();
+        }
+
+        function filterResults() {
+            displayResults();
+        }
+
+        function sortResults() {
+            displayResults();
+        }
+
+        function displayResults() {
+            const filterStatus = document.getElementById('filterStatus').value;
+            const sortBy = document.getElementById('sortBy').value;
+            
+            let filtered = results;
+            
+            if (filterStatus !== 'all') {
+                filtered = results.filter(r => r.status === filterStatus.toUpperCase());
+            }
+            
+            filtered.sort((a, b) => {
+                switch (sortBy) {
+                    case 'word':
+                        return a.word.localeCompare(b.word);
+                    case 'difference':
+                        return Math.abs(b.difference) - Math.abs(a.difference);
+                    case 'status':
+                        return a.status.localeCompare(b.status);
+                    default:
+                        return 0;
+                }
+            });
+            
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = '';
+            
+            filtered.forEach((result, index) => {
+                const resultDiv = document.createElement('div');
+                resultDiv.className = `result-item p-4 rounded-xl slide-in ${
+                    result.status === 'MATCHED' ? 'matched' : 'mismatched'
+                }`;
+                
+                const icon = result.status === 'MATCHED' ? 'check-circle' : 'x-circle';
+                const iconColor = result.status === 'MATCHED' ? 'text-green-400' : 'text-red-400';
+                const badgeClass = result.status === 'MATCHED' ? 'bg-green-900/30 text-green-300 border-green-500/30' : 'bg-red-900/30 text-red-300 border-red-500/30';
+                
+                resultDiv.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="${icon}" class="h-6 w-6 ${iconColor}"></i>
+                            <div>
+                                <p class="font-semibold text-lg">${result.word}</p>
+                                <p class="text-sm text-gray-400">
+                                    Expected: <span class="text-white">${result.expectedCount}</span> | 
+                                    Found: <span class="text-white">${result.actualCount}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium border ${badgeClass}">
+                                ${result.status}
+                            </span>
+                            ${result.status === 'MISMATCH' ? `
+                                <p class="text-sm text-gray-400 mt-2">
+                                    <span class="${result.difference > 0 ? 'text-orange-400' : 'text-red-400'}">
+                                        ${result.difference > 0 ? '+' : ''}${result.difference}
+                                    </span>
+                                </p>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                
+                resultsList.appendChild(resultDiv);
+            });
+            
+            // Re-initialize Lucide icons for new elements
+            lucide.createIcons();
+        }
+
+        function exportResults(format) {
+            if (results.length === 0) {
+                showError('No results to export');
+                return;
+            }
+            
+            let content = '';
+            let filename = '';
+            let mimeType = '';
+            
+            if (format === 'csv') {
+                content = 'Word,Expected Count,Actual Count,Status,Difference\n';
+                content += results.map(r => 
+                    `"${r.word.replace(/"/g, '""')}",${r.expectedCount},${r.actualCount},${r.status},${r.difference}`
+                ).join('\n');
+                filename = 'word_cross_check_results.csv';
+                mimeType = 'text/csv';
+            } else {
+                const matched = results.filter(r => r.status === 'MATCHED');
+                const mismatched = results.filter(r => r.status === 'MISMATCH');
+                
+                content = `=== WORD CROSS-CHECK RESULTS ===\n\n`;
+                content += `Document: ${docFile.name}\n`;
+                content += `Word List: ${wordListFile.name}\n`;
+                content += `Processed: ${new Date().toLocaleString()}\n\n`;
+                
+                content += `SUMMARY:\n`;
+                content += `- Total words checked: ${results.length}\n`;
+                content += `- Matched: ${matched.length}\n`;
+                content += `- Mismatched: ${mismatched.length}\n\n`;
+                
+                content += `MATCHED WORDS (${matched.length}):\n`;
+                matched.forEach(r => {
+                    content += `✓ "${r.word}" - Found ${r.actualCount} times\n`;
+                });
+                
+                content += `\nMISMATCHED WORDS (${mismatched.length}):\n`;
+                mismatched.forEach(r => {
+                    const arrow = r.difference > 0 ? '↑' : '↓';
+                    content += `✗ "${r.word}" - Expected ${r.expectedCount}, Found ${r.actualCount} ${arrow}${Math.abs(r.difference)}\n`;
+                });
+                
+                filename = 'word_cross_check_results.txt';
+                mimeType = 'text/plain';
+            }
+            
+            downloadFile(content, filename, mimeType);
+        }
+
+        // Calculator Functions
+        function updateCalcDisplay() {
+            document.getElementById('calcDisplay').textContent = calcDisplay;
+            document.getElementById('calcHistory').textContent = calcHistory;
+        }
+
+        function appendNumber(num) {
+            if (calcNewNumber) {
+                calcDisplay = num;
+                calcNewNumber = false;
+            } else {
+                calcDisplay += num;
+            }
+            updateCalcDisplay();
+        }
+
+        function appendDecimal() {
+            if (calcNewNumber) {
+                calcDisplay = '0.';
+                calcNewNumber = false;
+            } else if (calcDisplay.indexOf('.') === -1) {
+                calcDisplay += '.';
+            }
+            updateCalcDisplay();
+        }
+
+        function appendOperator(op) {
+            if (!calcNewNumber) {
+                calculate();
+            }
+            calcOperation = op;
+            calcPreviousValue = parseFloat(calcDisplay);
+            calcHistory = calcDisplay + ' ' + op;
+            calcNewNumber = true;
+            updateCalcDisplay();
+        }
+
+        function calculate() {
+            if (calcOperation && calcPreviousValue !== null) {
+                const currentValue = parseFloat(calcDisplay);
+                let result;
+                
+                switch (calcOperation) {
+                    case '+':
+                        result = calcPreviousValue + currentValue;
+                        break;
+                    case '-':
+                        result = calcPreviousValue - currentValue;
+                        break;
+                    case '*':
+                        result = calcPreviousValue * currentValue;
+                        break;
+                    case '/':
+                        result = calcPreviousValue / currentValue;
+                        break;
+                }
+                
+                calcHistory = calcPreviousValue + ' ' + calcOperation + ' ' + currentValue + ' =';
+                calcDisplay = result.toString();
+                calcOperation = null;
+                calcPreviousValue = null;
+                calcNewNumber = true;
+                updateCalcDisplay();
+            }
+        }
+
+        function clearCalc() {
+            calcDisplay = '0';
+            calcHistory = '';
+            calcNewNumber = true;
+            calcOperation = null;
+            calcPreviousValue = null;
+            updateCalcDisplay();
+        }
+
+        function deleteLast() {
+            if (!calcNewNumber) {
+                calcDisplay = calcDisplay.slice(0, -1);
+                if (calcDisplay === '') {
+                    calcDisplay = '0';
+                    calcNewNumber = true;
+                }
+                updateCalcDisplay();
+            }
+        }
+
+        // Construction Calculations
+        function calculateArea() {
+            const length = parseFloat(document.getElementById('areaLength').value);
+            const width = parseFloat(document.getElementById('areaWidth').value);
+            
+            if (!isNaN(length) && !isNaN(width)) {
+                const area = length * width;
+                document.getElementById('areaValue').textContent = area.toFixed(2);
+                document.getElementById('areaResult').classList.remove('hidden');
+            }
+        }
+
+        function calculateVolume() {
+            const length = parseFloat(document.getElementById('volumeLength').value);
+            const width = parseFloat(document.getElementById('volumeWidth').value);
+            const height = parseFloat(document.getElementById('volumeHeight').value);
+            
+            if (!isNaN(length) && !isNaN(width) && !isNaN(height)) {
+                const volume = length * width * height;
+                document.getElementById('volumeValue').textContent = volume.toFixed(2);
+                document.getElementById('volumeResult').classList.remove('hidden');
+            }
+        }
+
+        // Utility Functions
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function showError(message) {
+            const errorAlert = document.getElementById('errorAlert');
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorAlert.classList.remove('hidden');
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                hideError();
+            }, 5000);
+        }
+
+        function hideError() {
+            document.getElementById('errorAlert').classList.add('hidden');
+        }
+
+        // Initialize the application
+        setupFileUpload();
+    </script>
+
+    <style>
+        .spinner {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid #76b900;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #76b900 0%, #8bc34a 50%, #9ccc65 100%);
+        }
+        
+        .drop-zone {
+            transition: all 0.3s ease;
+        }
+        
+        .drop-zone.drag-over {
+            border-color: #76b900 !important;
+            background: rgba(118, 185, 0, 0.1) !important;
+        }
+        
+        .result-item.matched {
+            border-left: 3px solid #76b900;
+        }
+        
+        .result-item.mismatched {
+            border-left: 3px solid #ef4444;
+        }
+    </style>
+</body>
+</html>

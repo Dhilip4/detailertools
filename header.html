@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detailertools.com</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="dark-glass sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold glow-text">detailertools.com</h1>
+                            <p class="text-xs text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                        </div>
+                    </a>
+                    
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium">Home</a>
+                        <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium">Word Checker</a>
+                        <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium">Calculator</a>
+                        <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium">Blog</a>
+                        <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium">Forum</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search tools and content..." class="bg-gray-800 text-white rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <i data-lucide="search" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="bell" class="h-5 w-5"></i>
+                    </button>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="user" class="h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden dark-glass border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-around">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="home" class="h-4 w-4 mx-auto mb-1"></i>
+                    Home
+                </a>
+                <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="search" class="h-4 w-4 mx-auto mb-1"></i>
+                    Checker
+                </a>
+                <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="calculator" class="h-4 w-4 mx-auto mb-1"></i>
+                    Calc
+                </a>
+                <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="file-text" class="h-4 w-4 mx-auto mb-1"></i>
+                    Blog
+                </a>
+                <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="message-circle" class="h-4 w-4 mx-auto mb-1"></i>
+                    Forum
+                </a>
+            </div>
+        </div>
+    </div>

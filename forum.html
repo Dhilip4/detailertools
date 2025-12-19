@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - detailertools.com</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Netlify Identity -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="dark-glass sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold glow-text">detailertools.com</h1>
+                            <p class="text-xs text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                        </div>
+                    </a>
+                    
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium">Home</a>
+                        <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium">Word Checker</a>
+                        <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium">Calculator</a>
+                        <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium">Blog</a>
+                        <a href="forum.html" class="nav-link active text-gray-300 hover:text-white font-medium">Forum</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search tools and content..." class="bg-gray-800 text-white rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <i data-lucide="search" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="bell" class="h-5 w-5"></i>
+                    </button>
+                    <button id="loginBtn" class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="user" class="h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden dark-glass border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-around">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="home" class="h-4 w-4 mx-auto mb-1"></i>
+                    Home
+                </a>
+                <a href="checker.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="search" class="h-4 w-4 mx-auto mb-1"></i>
+                    Checker
+                </a>
+                <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="calculator" class="h-4 w-4 mx-auto mb-1"></i>
+                    Calc
+                </a>
+                <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="file-text" class="h-4 w-4 mx-auto mb-1"></i>
+                    Blog
+                </a>
+                <a href="forum.html" class="nav-link active text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="message-circle" class="h-4 w-4 mx-auto mb-1"></i>
+                    Forum
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Community Forum</h1>
+            <p class="text-gray-400">Connect with steel detailers and share knowledge</p>
+        </div>
+
+        <!-- Admin Access (hidden) -->
+        <div id="adminPanel" class="hidden nvidia-card rounded-xl p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Admin Panel</h2>
+            <button class="nvidia-button px-4 py-2 rounded-lg text-white font-semibold">Moderate Posts</button>
+            <button class="ml-4 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold">Delete Posts</button>
+        </div>
+
+        <!-- New Topic Button -->
+        <div id="newTopicSection" class="hidden mb-8">
+            <button class="nvidia-button px-6 py-3 rounded-xl text-white font-semibold flex items-center gap-2">
+                <i data-lucide="plus" class="h-5 w-5"></i>
+                New Topic
+            </button>
+        </div>
+
+        <!-- Forum Categories -->
+        <section class="mb-8">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
+                    <i data-lucide="message-circle" class="h-12 w-12 text-green-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">General Discussion</h3>
+                    <p class="text-sm text-gray-400 mb-4">General steel detailing topics</p>
+                    <div class="text-sm text-gray-500">
+                        <span class="font-bold text-green-400">156</span> topics • 
+                        <span class="font-bold text-green-400">2.3k</span> posts
+                    </div>
+                </div>
+
+                <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
+                    <i data-lucide="help-circle" class="h-12 w-12 text-blue-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Q&A</h3>
+                    <p class="text-sm text-gray-400 mb-4">Get help with specific problems</p>
+                    <div class="text-sm text-gray-500">
+                        <span class="font-bold text-blue-400">89</span> topics • 
+                        <span class="font-bold text-blue-400">1.1k</span> posts
+                    </div>
+                </div>
+
+                <div class="nvidia-card rounded-xl p-6 text-center cursor-pointer hover:border-green-500 transition-colors">
+                    <i data-lucide="lightbulb" class="h-12 w-12 text-orange-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Tips & Tricks</h3>
+                    <p class="text-sm text-gray-400 mb-4">Share your best practices</p>
+                    <div class="text-sm text-gray-500">
+                        <span class="font-bold text-orange-400">67</span> topics • 
+                        <span class="font-bold text-orange-400">845</span> posts
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Discussions -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold">Recent Discussions</h2>
+                <div id="newTopicBtn" class="hidden">
+                    <button class="nvidia-button px-4 py-2 rounded-lg text-white font-semibold">
+                        <i data-lucide="plus" class="h-4 w-4 inline mr-2"></i>
+                        New Topic
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold mb-2">Tips for Accurate Estimating</h3>
+                            <p class="text-gray-300 text-sm mb-4">What are your best practices for creating accurate construction estimates? I've been struggling with...</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-400">
+                                <span>By: John Doe</span>
+                                <span>2 hours ago</span>
+                                <span>12 replies</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button class="text-green-400 hover:text-green-300 text-sm">View →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold mb-2">Tekla Software Recommendations</h3>
+                            <p class="text-gray-300 text-sm mb-4">Looking for recommendations on Tekla plugins or add-ons that improve productivity...</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-400">
+                                <span>By: Jane Smith</span>
+                                <span>5 hours ago</span>
+                                <span>8 replies</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button class="text-green-400 hover:text-green-300 text-sm">View →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forum-post nvidia-card rounded-xl p-6 border-l-4 border-gray-600">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold mb-2">Steel Detailing Standards</h3>
+                            <p class="text-gray-300 text-sm mb-4">What standards do you follow for steel detailing? AISC, BS, or others?</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-400">
+                                <span>By: Mike Johnson</span>
+                                <span>1 day ago</span>
+                                <span>15 replies</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button class="text-green-400 hover:text-green-300 text-sm">View →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dark-glass border-t border-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-4 w-4 text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">detailertools.com</h3>
+                    </div>
+                    <p class="text-sm text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Tools</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="checker.html" class="hover:text-white transition-colors">Word Checker</a></li>
+                        <li><a href="calculator.html" class="hover:text-white transition-colors">Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="forum.html" class="hover:text-white transition-colors">Forum</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="github" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="twitter" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="linkedin" class="h-5 w-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>© 2024 detailertools.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Netlify Identity
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on('init', user => {
+                if (user) {
+                    document.getElementById('loginBtn').innerHTML = '<i data-lucide="log-out" class="h-5 w-5"></i>';
+                    document.getElementById('newTopicSection').classList.remove('hidden');
+                    document.getElementById('newTopicBtn').classList.remove('hidden');
+                    // Check if admin
+                    if (user.email === 'admin@example.com') { // Replace with actual admin check
+                        document.getElementById('adminPanel').classList.remove('hidden');
+                    }
+                }
+            });
+
+            window.netlifyIdentity.on('login', user => {
+                window.location.reload();
+            });
+
+            window.netlifyIdentity.on('logout', () => {
+                window.location.reload();
+            });
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            if (window.netlifyIdentity.currentUser()) {
+                window.netlifyIdentity.logout();
+            } else {
+                window.netlifyIdentity.open();
+            }
+        });
+
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const elements = document.querySelectorAll('h1, h2, h3, p');
+            elements.forEach(el => {
+                if (el.textContent.toLowerCase().includes(query)) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Checker - detailertools.com</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="dark-glass sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold glow-text">detailertools.com</h1>
+                            <p class="text-xs text-gray-400">Precision tools designed by detailers, for detailers: Streamlining the steel detailing workflow.</p>
+                        </div>
+                    </a>
+                    
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium">Home</a>
+                        <a href="checker.html" class="nav-link active text-gray-300 hover:text-white font-medium">Word Checker</a>
+                        <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium">Calculator</a>
+                        <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium">Blog</a>
+                        <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium">Forum</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search tools and content..." class="bg-gray-800 text-white rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <i data-lucide="search" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="bell" class="h-5 w-5"></i>
+                    </button>
+                    <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <i data-lucide="user" class="h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden dark-glass border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-around">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="home" class="h-4 w-4 mx-auto mb-1"></i>
+                    Home
+                </a>
+                <a href="checker.html" class="nav-link active text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="search" class="h-4 w-4 mx-auto mb-1"></i>
+                    Checker
+                </a>
+                <a href="calculator.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="calculator" class="h-4 w-4 mx-auto mb-1"></i>
+                    Calc
+                </a>
+                <a href="blog.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="file-text" class="h-4 w-4 mx-auto mb-1"></i>
+                    Blog
+                </a>
+                <a href="forum.html" class="nav-link text-gray-300 hover:text-white font-medium text-sm">
+                    <i data-lucide="message-circle" class="h-4 w-4 mx-auto mb-1"></i>
+                    Forum
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Word Cross-Checker</h1>
+            <p class="text-gray-400">Compare erection drawings with bill of materials</p>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="errorAlert" class="hidden bg-red-900/20 border border-red-500/30 text-red-200 px-6 py-4 rounded-xl flex items-center gap-3 mb-6">
+            <i data-lucide="alert-circle" class="h-5 w-5 flex-shrink-0"></i>
+            <span id="errorMessage"></span>
+        </div>
+
+        <!-- Upload Section -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-6">File Upload</h2>
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Document Upload -->
+                <div class="nvidia-card rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 nvidia-gradient rounded-lg flex items-center justify-center mr-4">
+                            <i data-lucide="file-text" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Text Document</h3>
+                            <p class="text-sm text-gray-400">Erection drawing (PDF conversion)</p>
+                        </div>
+                    </div>
+                    
+                    <div id="docDropZone" class="drop-zone border-2 border-dashed border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-green-500 transition-colors">
+                        <input type="file" id="docFileInput" accept=".txt" class="hidden">
+                        <div class="space-y-4">
+                            <i data-lucide="upload-cloud" class="h-12 w-12 mx-auto text-gray-400"></i>
+                            <div>
+                                <p class="text-sm font-medium">Click to upload or drag and drop</p>
+                                <p class="text-xs text-gray-500">TXT files only • Max 10MB</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="docFileInfo" class="hidden mt-4 p-4 bg-green-900/20 border border-green-500/30 rounded-xl flex items-center gap-3">
+                        <i data-lucide="check-circle" class="h-5 w-5 text-green-400"></i>
+                        <div>
+                            <p id="docFileName" class="text-sm font-medium text-green-200"></p>
+                            <p id="docFileSize" class="text-xs text-green-400"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Word List Upload -->
+                <div class="nvidia-card rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 nvidia-gradient rounded-lg flex items-center justify-center mr-4">
+                            <i data-lucide="list-checks" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Bill of Materials</h3>
+                            <p class="text-sm text-gray-400">Word list (word,expected_count)</p>
+                        </div>
+                    </div>
+                    
+                    <div id="wordListDropZone" class="drop-zone border-2 border-dashed border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-green-500 transition-colors">
+                        <input type="file" id="wordListFileInput" accept=".txt,.csv" class="hidden">
+                        <div class="space-y-4">
+                            <i data-lucide="upload-cloud" class="h-12 w-12 mx-auto text-gray-400"></i>
+                            <div>
+                                <p class="text-sm font-medium">Click to upload or drag and drop</p>
+                                <p class="text-xs text-gray-500">TXT or CSV files • Max 10MB</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="wordListFileInfo" class="hidden mt-4 p-4 bg-green-900/20 border border-green-500/30 rounded-xl flex items-center gap-3">
+                        <i data-lucide="check-circle" class="h-5 w-5 text-green-400"></i>
+                        <div>
+                            <p id="wordListFileName" class="text-sm font-medium text-green-200"></p>
+                            <p id="wordListFileSize" class="text-xs text-green-400"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-6">Analysis Settings</h2>
+            <div class="nvidia-card rounded-xl p-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium flex items-center gap-2">
+                            <i data-lucide="settings" class="h-5 w-5 text-green-400"></i>
+                            Search Configuration
+                        </h3>
+                        
+                        <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <input type="checkbox" id="caseSensitive" class="w-5 h-5 text-green-600 rounded focus:ring-green-500 focus:ring-2">
+                            <div>
+                                <span class="text-sm font-medium">Case-sensitive search</span>
+                                <p class="text-xs text-gray-400">"Part" ≠ "part"</p>
+                            </div>
+                        </label>
+                        
+                        <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
+                            <input type="checkbox" id="wholeWords" checked class="w-5 h-5 text-green-600 rounded focus:ring-green-500 focus:ring-2">
+                            <div>
+                                <span class="text-sm font-medium">Match whole words only</span>
+                                <p class="text-xs text-gray-400">"Part" won't match "Partial"</p>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium flex items-center gap-2">
+                            <i data-lucide="info" class="h-5 w-5 text-blue-400"></i>
+                            Recommendations
+                        </h3>
+                        
+                        <div class="p-4 bg-blue-900/20 border border-blue-500/30 rounded-xl">
+                            <h4 class="font-medium mb-2 text-blue-200">For Part Mark Analysis:</h4>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>• ✅ Keep both options checked</li>
+                                <li>• ✅ Use exact part marks</li>
+                                <li>• ✅ Ensure proper formatting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Button -->
+        <section class="flex justify-center mb-8">
+            <button id="processBtn" onclick="processFiles()" disabled class="nvidia-button px-8 py-4 rounded-xl text-white font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 min-w-[200px] justify-center">
+                <i data-lucide="play" class="h-5 w-5"></i>
+                <span id="processBtnText">Start Analysis</span>
+                <div id="processSpinner" class="spinner hidden"></div>
+            </button>
+        </section>
+
+        <!-- Results Section (placeholder) -->
+        <section id="resultsSection" class="hidden">
+            <h2 class="text-xl font-semibold mb-6">Analysis Results</h2>
+            <p>Results will be displayed here after processing.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dark-glass border-t border-gray-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 nvidia-gradient rounded-lg flex items-center justify-center">
+                            <i data-lucide="tool" class="h-4 w-4 text-white"></i>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-4">Tools</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li><a href="checker.html" class="hover:text-white transition-colors">Word Checker</a></li>
+                            <li><a href="calculator.html" class="hover:text-white transition-colors">Calculator</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="forum.html" class="hover:text-white transition-colors">Forum</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="github" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="twitter" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            <i data-lucide="linkedin" class="h-5 w-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>© 2024 detailertools.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            // Simple search
+            const elements = document.querySelectorAll('h1, h2, h3, p');
+            elements.forEach(el => {
+                if (el.textContent.toLowerCase().includes(query)) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        });
+
+        // Placeholder for file processing
+        function processFiles() {
+            alert('File processing functionality would be implemented here with the full JavaScript from the original.');
+        }
+    </script>
+</body>
+</html>
