@@ -301,11 +301,11 @@ export default function WordChecker({ showToast }: WordCheckerProps) {
                     <div>
                         <p className="font-bold text-white mb-1">CSV Format:</p>
                         <p className="bg-black/30 p-2 rounded font-mono text-xs text-gray-400">
-                            Beam B1, 14<br/>
-                            Column C1, 8<br/>
-                            PL10x10, 42
+                            B1,14<br/>
+                            C1,8<br/>
+                            PL,42
                         </p>
-                        <p className="text-xs mt-1 text-gray-500">Format: "Keyword, Count"</p>
+                        <p className="text-xs mt-1 text-gray-500">Format: "Assembly Mark, Quantity"</p>
                     </div>
                     <div>
                         <p className="font-bold text-white mb-1">Checking Drawings:</p>
