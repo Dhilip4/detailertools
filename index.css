@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --nvidia-green: #76b900;
+    --nvidia-green-light: #8bc34a;
+    --nvidia-green-lighter: #9ccc65;
+    --bg-dark: #0a0a0a;
+    --bg-medium: #1a1a1a;
+    --bg-light: #2a2a2a;
+    --glass-bg: rgba(20, 20, 20, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 50%, var(--bg-light) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* NVIDIA Themed Utilities */
+.nvidia-gradient {
+    background: linear-gradient(135deg, var(--nvidia-green) 0%, var(--nvidia-green-light) 50%, var(--nvidia-green-lighter) 100%);
+}
+
+.dark-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nvidia-card {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(40, 40, 40, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nvidia-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(118, 185, 0, 0.1);
+    border-color: rgba(118, 185, 0, 0.3);
+}
+
+.nvidia-button {
+    background: linear-gradient(135deg, var(--nvidia-green) 0%, var(--nvidia-green-light) 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.nvidia-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(118, 185, 0, 0.4);
+}
+
+.glow-text {
+    text-shadow: 0 0 30px rgba(118, 185, 0, 0.6), 0 0 60px rgba(118, 185, 0, 0.3);
+}
+
+.text-shimmer {
+    background: linear-gradient(to right, #76b900 20%, #ffffff 50%, #76b900 80%);
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer {
+    to { background-position: 200% center; }
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+.float-animation { animation: float 6s ease-in-out infinite; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.slide-in { animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+::-webkit-scrollbar-thumb { background: rgba(118, 185, 0, 0.5); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(118, 185, 0, 0.7); }
