@@ -15,7 +15,7 @@ export default function Blog({ showToast, initialPostId }: BlogProps) {
   // --- CONFIGURATION ---
   // Change this to 'hide' to remove the lock icon from the website.
   // Change this to 'unhide' to show it.
-  const lockIconStatus = 'unhide'; 
+  const lockIconStatus = 'hide'; 
 
   // --- STATE ---
   const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
@@ -40,7 +40,7 @@ export default function Blog({ showToast, initialPostId }: BlogProps) {
   
   // Refs
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const contentInputRef = useRef<HTMLTextAreaElement>(null);
+  const contentInputRef = useRef<HTMLDivElement>(null); // Changed to Div for Visual Editor
   const contentImageInputRef = useRef<HTMLInputElement>(null);
 
   // --- INITIALIZATION ---
@@ -51,25 +51,24 @@ export default function Blog({ showToast, initialPostId }: BlogProps) {
     }
   }, [initialPostId, posts]);
 
-  // --- HELPER: Editor Logic ---
-  const insertAtCursor = (startTag: string, endTag: string = '') => {
-      const textarea = contentInputRef.current;
-      if (!textarea) return;
+  // --- HELPER: Visual Editor Logic ---
+  
+  // Initialize editor content when modal opens
+  useEffect(() => {
+    if (isModalOpen && contentInputRef.current) {
+        // We only set the innerHTML once when the modal opens to avoid cursor jumping issues
+        // during React re-renders if we were to bind it directly to value.
+        contentInputRef.current.innerHTML = formData.content || '';
+    }
+  }, [isModalOpen]);
 
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      const text = formData.content || '';
-      const safeText = text || '';
-
-      const before = safeText.substring(0, start);
-      const selection = safeText.substring(start, end);
-      const after = safeText.substring(end);
-
-      const newContent = before + startTag + selection + endTag + after;
-      setFormData({ ...formData, content: newContent });
-      
-      // We focus back so user can keep typing (optional)
-      textarea.focus();
+  // Execute rich text commands (Bold, Italic, etc)
+  const execFormat = (command: string, value: string | undefined = undefined) => {
+      document.execCommand(command, false, value);
+      if (contentInputRef.current) {
+          contentInputRef.current.focus();
+          setFormData({ ...formData, content: contentInputRef.current.innerHTML });
+      }
   };
 
   const handleContentImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,10 +76,9 @@ export default function Blog({ showToast, initialPostId }: BlogProps) {
       if (file) {
           const reader = new FileReader();
           reader.onloadend = () => {
-              // Insert standard HTML img tag with Tailwind classes for styling
-              const imgTag = `\n<img src="${reader.result}" alt="Embedded Image" class="w-full rounded-xl my-6 border border-gray-700 shadow-2xl" />\n`;
-              insertAtCursor(imgTag);
-              if(showToast) showToast("Image inserted into content!", "success");
+              // Insert image directly into the visual editor
+              execFormat('insertImage', reader.result as string);
+              if(showToast) showToast("Image inserted!", "success");
           };
           reader.readAsDataURL(file);
       }
@@ -184,6 +182,7 @@ export const BLOG_POSTS: BlogPost[] = ${JSON.stringify(posts, null, 2)};`;
           id: editingPost ? editingPost.id : Date.now().toString(),
           title: formData.title || 'Untitled',
           desc: formData.desc || '',
+          // Use the content from state, fallback to desc if empty
           content: formData.content || formData.desc || '',
           author: formData.author || 'Developer',
           read: '5 min read',
@@ -267,16 +266,17 @@ export const BLOG_POSTS: BlogPost[] = ${JSON.stringify(posts, null, 2)};`;
                       </form>
                   </div>
 
-                  {/* Right: Rich Content Editor */}
+                  {/* Right: Visual Content Editor */}
                   <div className="w-full md:w-2/3 flex flex-col bg-[#1a1a1a]">
                       {/* Toolbar */}
-                      <div className="bg-[#252525] border-b border-gray-700 p-2 flex items-center gap-1 flex-wrap">
-                          <button type="button" onClick={() => insertAtCursor('<h3>', '</h3>')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Heading"><Heading size={16} /></button>
-                          <button type="button" onClick={() => insertAtCursor('<strong>', '</strong>')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Bold"><Bold size={16} /></button>
-                          <button type="button" onClick={() => insertAtCursor('<em>', '</em>')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Italic"><Italic size={16} /></button>
+                      <div className="bg-[#252525] border-b border-gray-700 p-2 flex items-center gap-1 flex-wrap select-none">
+                          <button type="button" onClick={() => execFormat('formatBlock', 'H3')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Heading"><Heading size={16} /></button>
+                          <button type="button" onClick={() => execFormat('bold')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Bold"><Bold size={16} /></button>
+                          <button type="button" onClick={() => execFormat('italic')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Italic"><Italic size={16} /></button>
                           <div className="w-px h-6 bg-gray-700 mx-1"></div>
-                          <button type="button" onClick={() => insertAtCursor('<ul>\n  <li>', '</li>\n</ul>')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="List"><List size={16} /></button>
-                          <button type="button" onClick={() => insertAtCursor('<pre class="bg-gray-800 p-4 rounded text-sm font-mono my-4 overflow-x-auto">', '</pre>')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Code Block"><Code size={16} /></button>
+                          <button type="button" onClick={() => execFormat('insertUnorderedList')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="List"><List size={16} /></button>
+                          {/* Code blocks in WYSIWYG are handled by formatBlock PRE */}
+                          <button type="button" onClick={() => execFormat('formatBlock', 'PRE')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" title="Code Block"><Code size={16} /></button>
                           <div className="w-px h-6 bg-gray-700 mx-1"></div>
                           
                           {/* Inline Image Upload */}
@@ -284,20 +284,26 @@ export const BLOG_POSTS: BlogPost[] = ${JSON.stringify(posts, null, 2)};`;
                           <button type="button" onClick={() => contentImageInputRef.current?.click()} className="p-2 text-[#76b900] hover:text-white hover:bg-gray-700 rounded transition-colors font-bold flex items-center gap-1" title="Insert Image"><ImagePlus size={16} /> <span className="text-xs">Add Image</span></button>
                       </div>
 
-                      {/* Content Area */}
-                      <div className="flex-1 relative">
-                          <textarea 
+                      {/* Visual Content Area */}
+                      <div className="flex-1 relative bg-[#1a1a1a]">
+                          <div 
                             ref={contentInputRef}
-                            value={formData.content} 
-                            onChange={e => setFormData({...formData, content: e.target.value})} 
-                            className="w-full h-full bg-[#1a1a1a] p-6 text-gray-300 font-mono text-sm leading-relaxed resize-none focus:outline-none custom-scrollbar"
-                            placeholder="Write your article content here... HTML is supported."
+                            contentEditable
+                            suppressContentEditableWarning
+                            onInput={(e) => setFormData({...formData, content: e.currentTarget.innerHTML})}
+                            className="w-full h-full p-6 text-gray-300 font-sans text-sm leading-relaxed outline-none overflow-y-auto custom-scrollbar prose prose-invert prose-p:my-2 prose-headings:text-white prose-headings:font-bold prose-pre:bg-gray-800 prose-pre:p-4 prose-pre:rounded max-w-none"
+                            style={{ minHeight: '100%' }}
                           />
+                          {!formData.content && (
+                              <div className="absolute top-6 left-6 text-gray-600 pointer-events-none italic">
+                                  Start writing your article here...
+                              </div>
+                          )}
                       </div>
                       
                       <div className="bg-[#252525] px-4 py-2 text-xs text-gray-500 border-t border-gray-700 flex justify-between">
-                         <span>HTML Editor</span>
-                         <span>{formData.content?.length || 0} characters</span>
+                         <span>Visual Editor</span>
+                         <span>{formData.content?.length || 0} chars (HTML)</span>
                       </div>
                   </div>
               </div>
