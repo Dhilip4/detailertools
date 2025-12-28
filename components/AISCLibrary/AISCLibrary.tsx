@@ -82,7 +82,7 @@ export const AISCLibrary: React.FC = () => {
                         </div>
                         AISC Digital Library
                     </h2>
-                    <p className="text-gray-500 text-sm mt-2 ml-14">Steel Construction Manual Shapes Database (15th Edition)</p>
+                    <p className="text-gray-500 text-sm mt-2 ml-14">AISC Shapes Database (v16.0)</p>
                 </div>
             </div>
 
