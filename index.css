@@ -71,25 +71,246 @@ body {
     -webkit-background-clip: text;
     animation: shimmer 4s linear infinite;
 }
+
 @keyframes shimmer {
-    to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 /* Animations */
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
-.float-animation { animation: float 6s ease-in-out infinite; }
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-.slide-in { animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.slide-in {
+    animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
-::-webkit-scrollbar-thumb { background: rgba(118, 185, 0, 0.5); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(118, 185, 0, 0.7); }
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(118, 185, 0, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(118, 185, 0, 0.7);
+}
+
+/* ===== AISC Library Enhanced Panels ===== */
+
+/* Base panel - clean solid background */
+.aisc-panel {
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.2s ease;
+}
+
+/* Top border accent line */
+.aisc-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #76b900;
+}
+
+/* Remove the corner decoration */
+.aisc-panel::after {
+    display: none;
+}
+
+.aisc-panel:hover {
+    border-color: rgba(118, 185, 0, 0.3);
+}
+
+/* Panel header styling */
+.aisc-panel-header {
+    background: #151515;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 18px;
+}
+
+/* Panel content area */
+.aisc-panel-content {
+    padding: 16px;
+}
+
+/* Visual container for cross-section */
+.aisc-visual-box {
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+}
+
+/* Data row styling */
+.aisc-data-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    margin: 2px 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.aisc-data-row:hover {
+    background: rgba(118, 185, 0, 0.08);
+    border-color: rgba(118, 185, 0, 0.15);
+}
+
+/* Section title in data panel */
+.aisc-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(118, 185, 0, 0.8);
+    padding: 12px 0 8px;
+    margin-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.aisc-section-title:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Shape list item */
+.aisc-shape-item {
+    padding: 10px 14px;
+    margin: 3px 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.aisc-shape-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.aisc-shape-item.selected {
+    background: linear-gradient(135deg, rgba(118, 185, 0, 0.9) 0%, rgba(139, 195, 74, 0.9) 100%);
+    color: #000;
+    font-weight: 600;
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(118, 185, 0, 0.3);
+}
+
+/* Input styling */
+.aisc-input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.aisc-input:focus {
+    outline: none;
+    border-color: rgba(118, 185, 0, 0.5);
+    box-shadow: 0 0 20px rgba(118, 185, 0, 0.1);
+}
+
+.aisc-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Select dropdown */
+.aisc-select {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.aisc-select:focus {
+    outline: none;
+    border-color: rgba(118, 185, 0, 0.5);
+}
+
+.aisc-select option {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* Badge/Tag styling */
+.aisc-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(118, 185, 0, 0.15);
+    color: var(--nvidia-green);
+    border: 1px solid rgba(118, 185, 0, 0.25);
+}
+
+/* Stats footer */
+.aisc-stats-footer {
+    padding: 10px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
