@@ -42,7 +42,7 @@ export const CrossSection: React.FC<CrossSectionProps> = ({ shape, width = 380, 
     };
 
     return (
-        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="drop-shadow-lg">
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="drop-shadow-lg max-w-full h-auto">
             <defs>
                 {/* Gradient for steel material look */}
                 <linearGradient id="steelGradient" x1="0%" y1="0%" x2="100%" y2="100%">

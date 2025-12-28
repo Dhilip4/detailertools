@@ -32,9 +32,9 @@ export const ShapeViewer: React.FC<ShapeViewerProps> = ({ shape }) => {
     );
 
     return (
-        <div className="grid lg:grid-cols-2 gap-6 h-full overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:h-full md:overflow-hidden h-auto">
             {/* Left: Visual */}
-            <div className="aisc-panel flex flex-col min-h-0 overflow-hidden">
+            <div className="aisc-panel flex flex-col md:min-h-0 md:overflow-hidden h-auto">
                 {/* Header */}
                 <div className="aisc-panel-header flex justify-between items-center">
                     <h2 className="text-xl font-black text-white">{shape.name}</h2>
@@ -64,7 +64,7 @@ export const ShapeViewer: React.FC<ShapeViewerProps> = ({ shape }) => {
             </div>
 
             {/* Right: Data Table */}
-            <div className="aisc-panel flex flex-col min-h-0 overflow-hidden">
+            <div className="aisc-panel flex flex-col md:min-h-0 md:overflow-hidden h-auto max-h-[600px] md:max-h-none">
                 {/* Header */}
                 <div className="aisc-panel-header">
                     <h3 className="text-base font-bold text-white flex items-center gap-2">

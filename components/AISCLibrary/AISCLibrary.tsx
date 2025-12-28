@@ -72,7 +72,7 @@ export const AISCLibrary: React.FC = () => {
     );
 
     return (
-        <div className="flex flex-col h-[calc(100vh-120px)] max-h-[850px]">
+        <div className="flex flex-col md:h-[calc(100vh-120px)] md:max-h-[850px] h-auto">
             {/* Header */}
             <div className="mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
@@ -86,9 +86,9 @@ export const AISCLibrary: React.FC = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-12 gap-5 flex-1 min-h-0 overflow-hidden">
+            <div className="grid grid-cols-12 gap-5 flex-1 md:min-h-0 md:overflow-hidden h-auto">
                 {/* Sidebar: Filters & List */}
-                <div className="col-span-12 md:col-span-3 flex flex-col gap-4 min-h-0 overflow-hidden">
+                <div className="col-span-12 md:col-span-3 flex flex-col gap-4 md:min-h-0 md:overflow-hidden h-auto">
 
                     {/* Type Selector */}
                     <div className="aisc-panel p-4 flex-shrink-0">
@@ -108,7 +108,7 @@ export const AISCLibrary: React.FC = () => {
                     </div>
 
                     {/* Shape List */}
-                    <div className="aisc-panel flex flex-col overflow-hidden flex-1 min-h-0">
+                    <div className="aisc-panel flex flex-col md:overflow-hidden md:flex-1 md:min-h-0 h-96">
                         {/* Filter */}
                         <div className="p-3 border-b border-white/5 flex-shrink-0">
                             <input
@@ -154,7 +154,7 @@ export const AISCLibrary: React.FC = () => {
                 </div>
 
                 {/* Main Content: Viewer */}
-                <div className="col-span-12 md:col-span-9 min-h-0 overflow-hidden">
+                <div className="col-span-12 md:col-span-9 md:min-h-0 md:overflow-hidden h-auto">
                     <ShapeViewer shape={selectedShape} />
                 </div>
             </div>
