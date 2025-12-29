@@ -283,16 +283,16 @@ const GageSelector: React.FC = () => {
 
                                 return (
                                     <div className="flex flex-col gap-4">
-                                        <div className="flex flex-col lg:flex-row gap-4 items-start">
-                                            {/* Column 1: Info */}
-                                            <div className="flex-1 w-full space-y-4">
+                                        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-4 items-start">
+                                            {/* Column 1: Info (Takes more space) */}
+                                            <div className="space-y-6 min-w-0">
                                                 {/* Leg 1 Info */}
                                                 <div className="flex justify-between items-start border-b border-gray-800 pb-2">
                                                     <div className="flex flex-col">
                                                         <span className="text-gray-400 text-xs uppercase tracking-wider">Leg 1 ({leg1Val}")</span>
                                                         <span className="text-[10px] text-gray-600">Stand. Gage</span>
                                                     </div>
-                                                    <div className="flex flex-col items-end">
+                                                    <div className="flex flex-col items-end flex-shrink-0">
                                                         <span className="text-xl text-white font-mono font-bold text-[#76b900]">
                                                             {gage1 ? `${toFraction(gage1.g)}` : '-'}
                                                         </span>
@@ -300,7 +300,7 @@ const GageSelector: React.FC = () => {
                                                             <div className="flex flex-col items-end">
                                                                 <span className="text-xs text-gray-500 font-mono mb-1">{gage1.g}"</span>
                                                                 {(gage1.g1 || gage1.g2) && (
-                                                                    <div className="grid grid-cols-2 gap-x-2 gap-y-0 text-[10px] text-right font-mono text-gray-400 bg-gray-900/50 p-1 px-2 rounded border border-gray-800 mt-1">
+                                                                    <div className="flex flex-col gap-y-1 text-[10px] text-right font-mono text-gray-400 bg-gray-900/50 p-1 px-2 rounded border border-gray-800 mt-1 whitespace-nowrap">
                                                                         {gage1.g1 && <span>g1: <span className="text-white">{toFraction(gage1.g1)}</span></span>}
                                                                         {gage1.g2 && <span>g2: <span className="text-white">{toFraction(gage1.g2)}</span></span>}
                                                                         {gage1.g3 && <span>g3: <span className="text-white">{toFraction(gage1.g3)}</span></span>}
@@ -317,7 +317,7 @@ const GageSelector: React.FC = () => {
                                                         <span className="text-gray-400 text-xs uppercase tracking-wider">Leg 2 ({leg2Val}")</span>
                                                         <span className="text-[10px] text-gray-600">Stand. Gage</span>
                                                     </div>
-                                                    <div className="flex flex-col items-end">
+                                                    <div className="flex flex-col items-end flex-shrink-0">
                                                         <span className="text-xl text-white font-mono font-bold text-[#76b900]">
                                                             {gage2 ? `${toFraction(gage2.g)}` : '-'}
                                                         </span>
@@ -325,7 +325,7 @@ const GageSelector: React.FC = () => {
                                                             <div className="flex flex-col items-end">
                                                                 <span className="text-xs text-gray-500 font-mono mb-1">{gage2.g}"</span>
                                                                 {(gage2.g1 || gage2.g2) && (
-                                                                    <div className="grid grid-cols-2 gap-x-2 gap-y-0 text-[10px] text-right font-mono text-gray-400 bg-gray-900/50 p-1 px-2 rounded border border-gray-800 mt-1">
+                                                                    <div className="flex flex-col gap-y-1 text-[10px] text-right font-mono text-gray-400 bg-gray-900/50 p-1 px-2 rounded border border-gray-800 mt-1 whitespace-nowrap">
                                                                         {gage2.g1 && <span>g1: <span className="text-white">{toFraction(gage2.g1)}</span></span>}
                                                                         {gage2.g2 && <span>g2: <span className="text-white">{toFraction(gage2.g2)}</span></span>}
                                                                         {gage2.g3 && <span>g3: <span className="text-white">{toFraction(gage2.g3)}</span></span>}
@@ -338,8 +338,8 @@ const GageSelector: React.FC = () => {
                                                 </div>
                                             </div>
 
-                                            {/* Column 2: Visualizer */}
-                                            <div className="w-full flex justify-center overflow-x-auto">
+                                            {/* Column 2: Visualizer (Right Side) */}
+                                            <div className="flex justify-center items-center bg-black/20 rounded-lg border border-gray-800/50 p-1">
                                                 <AngleGageVisualizer
                                                     leg1={leg1Val}
                                                     leg2={leg2Val}

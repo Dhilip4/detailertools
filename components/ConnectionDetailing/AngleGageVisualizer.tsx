@@ -125,8 +125,8 @@ const AngleGageVisualizer: React.FC<AngleGageVisualizerProps> = ({ leg1, leg2, t
     };
 
     return (
-        <div className="flex justify-center items-center p-4 bg-black/40 rounded-lg border border-gray-800">
-            <svg width={350} height={350} viewBox={`-${padding} -${padding} ${350} ${350}`}>
+        <div className="flex justify-center items-center p-2 w-full">
+            <svg viewBox={`-${padding} -${padding} ${350} ${350}`} width="100%" height="auto" style={{ maxWidth: '400px' }}>
                 <g transform={`translate(${padding}, ${padding})`}>
                     {/* Shape */}
                     <path d={path} fill="#333" stroke="#666" strokeWidth="1" />
