@@ -127,7 +127,7 @@ const BoltRowsSelector: React.FC = () => {
         return (
             <div className="flex flex-col items-center justify-center p-4 bg-[#1a1a1a] rounded border border-gray-700 mt-4 w-full">
                 <h5 className="text-gray-400 text-xs uppercase mb-2">Beam Elevation View</h5>
-                <svg width={svgWidth} height={svgHeight} className="border border-gray-800 bg-black rounded shadow-inner">
+                <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} width="100%" height="auto" style={{ maxWidth: '300px' }} className="border border-gray-800 bg-black rounded shadow-inner">
 
                     {/* Beam Body */}
                     <rect

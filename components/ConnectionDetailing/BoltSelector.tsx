@@ -37,7 +37,8 @@ const BoltSelector: React.FC = () => {
             </div>
 
             {/* Layout Grid: 650px layout, minimal gaps */}
-            <div className="grid grid-cols-1 xl:grid-cols-[600px_1fr] gap-1 items-stretch">
+            {/* Layout Grid: Tables & Wrench Clearances */}
+            <div className="grid grid-cols-1 xl:grid-cols-[600px_1fr] gap-1 items-start">
                 {/* Left Column: Data Tables */}
                 <div className="flex flex-col gap-2 text-sm">
                     {/* Hole Dimensions */}
@@ -85,43 +86,49 @@ const BoltSelector: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Right Column: Visualizer */}
-                <div className="bg-[#1a1a1a] p-2 rounded-xl border border-gray-800 shadow-lg flex flex-col items-center justify-between h-full">
-                    <div className="w-full">
-                        <h4 className="text-white font-bold mb-2 border-b border-gray-700 pb-1 flex justify-between items-center px-1">
-                            <span>Table 7-15 - Wrench Clearances</span>
-                            <span className="text-xs text-gray-500 font-normal">Approximate</span>
-                        </h4>
-                        {/* Compact gap-1 for visualizers */}
-                        <div className="flex flex-col xl:flex-row gap-1 justify-center items-center">
-                            <ClearanceVisualizer clearance={clearance} type="entering" />
-                            <ClearanceVisualizer clearance={clearance} type="tightening" />
+                {/* Right Column: Visualizer (Wrench Only) */}
+                <div className="flex flex-col h-full">
+                    <div className="bg-[#1a1a1a] p-2 rounded-xl border border-gray-800 shadow-lg w-full">
+                        <div className="w-full">
+                            <h4 className="text-white font-bold mb-2 border-b border-gray-700 pb-1 flex justify-between items-center px-1">
+                                <span>Table 7-15 - Wrench Clearances</span>
+                                <span className="text-xs text-gray-500 font-normal">Approximate</span>
+                            </h4>
+                            {/* Compact gap-1 for visualizers */}
+                            <div className="flex flex-col xl:flex-row gap-1 justify-center items-center">
+                                <ClearanceVisualizer clearance={clearance} type="entering" />
+                                <ClearanceVisualizer clearance={clearance} type="tightening" />
+                            </div>
+                        </div>
+                        <div className="mt-2 p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-center w-full">
+                            <p className="text-yellow-200/70 text-xs">
+                                C1/C2 values are estimates. Verify with wrench mfrg data.
+                            </p>
                         </div>
                     </div>
-                    <div className="mt-2 p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-center w-full">
-                        <p className="text-yellow-200/70 text-xs">
-                            C1/C2 values are estimates. Verify with wrench mfrg data.
-                        </p>
-                    </div>
-                    {/* Fillet Encroachment Panel */}
-                    <div className="w-full">
-                        <FilletEncroachment />
-                    </div>
+                </div>
+            </div>
 
-                    {/* Gage Selector Panel */}
-                    <div className="w-full">
-                        <GageSelector />
-                    </div>
+            {/* Full Width Tools Container */}
+            <div className="flex flex-col gap-4">
+                {/* Fillet Encroachment Panel */}
+                <div className="w-full">
+                    <FilletEncroachment />
+                </div>
 
-                    {/* Anchor Rod Hole Selector Panel */}
-                    <div className="w-full">
-                        <AnchorRodHoleSelector />
-                    </div>
+                {/* Gage Selector Panel */}
+                <div className="w-full">
+                    <GageSelector />
+                </div>
 
-                    {/* Bolt Rows Calculator */}
-                    <div className="w-full">
-                        <BoltRowsSelector />
-                    </div>
+                {/* Anchor Rod Hole Selector Panel */}
+                <div className="w-full">
+                    <AnchorRodHoleSelector />
+                </div>
+
+                {/* Bolt Rows Calculator */}
+                <div className="w-full">
+                    <BoltRowsSelector />
                 </div>
             </div>
         </div>

@@ -283,9 +283,9 @@ const GageSelector: React.FC = () => {
 
                                 return (
                                     <div className="flex flex-col gap-4">
-                                        <div className="flex justify-between gap-4">
+                                        <div className="flex flex-col lg:flex-row gap-4 items-start">
                                             {/* Column 1: Info */}
-                                            <div className="flex-1 space-y-4">
+                                            <div className="flex-1 w-full space-y-4">
                                                 {/* Leg 1 Info */}
                                                 <div className="flex justify-between items-start border-b border-gray-800 pb-2">
                                                     <div className="flex flex-col">
@@ -339,7 +339,7 @@ const GageSelector: React.FC = () => {
                                             </div>
 
                                             {/* Column 2: Visualizer */}
-                                            <div className="">
+                                            <div className="w-full flex justify-center overflow-x-auto">
                                                 <AngleGageVisualizer
                                                     leg1={leg1Val}
                                                     leg2={leg2Val}
