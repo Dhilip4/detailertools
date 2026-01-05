@@ -10,11 +10,11 @@ export const HOLE_DIMENSIONS: Record<BoltDiameter, HoleDimensions> = {
     "5/8": { diameter: "5/8", standard: 11 / 16, oversized: 13 / 16, shortSlotWidth: 11 / 16, shortSlotLength: 7 / 8, longSlotWidth: 11 / 16, longSlotLength: 1.5625 },
     "3/4": { diameter: "3/4", standard: 13 / 16, oversized: 15 / 16, shortSlotWidth: 13 / 16, shortSlotLength: 1, longSlotWidth: 13 / 16, longSlotLength: 1.875 },
     "7/8": { diameter: "7/8", standard: 15 / 16, oversized: 1.0625, shortSlotWidth: 15 / 16, shortSlotLength: 1.125, longSlotWidth: 15 / 16, longSlotLength: 2.1875 },
-    "1": { diameter: "1", standard: 1.0625, oversized: 1.25, shortSlotWidth: 1.0625, shortSlotLength: 1.3125, longSlotWidth: 1.0625, longSlotLength: 2.5 },
-    "1-1/8": { diameter: "1-1/8", standard: 1.1875, oversized: 1.4375, shortSlotWidth: 1.1875, shortSlotLength: 1.5, longSlotWidth: 1.1875, longSlotLength: 2.8125 },
-    "1-1/4": { diameter: "1-1/4", standard: 1.3125, oversized: 1.5625, shortSlotWidth: 1.3125, shortSlotLength: 1.625, longSlotWidth: 1.3125, longSlotLength: 3.125 },
-    "1-3/8": { diameter: "1-3/8", standard: 1.4375, oversized: 1.6875, shortSlotWidth: 1.4375, shortSlotLength: 1.75, longSlotWidth: 1.4375, longSlotLength: 3.4375 },
-    "1-1/2": { diameter: "1-1/2", standard: 1.5625, oversized: 1.8125, shortSlotWidth: 1.5625, shortSlotLength: 1.875, longSlotWidth: 1.5625, longSlotLength: 3.75 },
+    "1": { diameter: "1", standard: 1.125, oversized: 1.25, shortSlotWidth: 1.0625, shortSlotLength: 1.3125, longSlotWidth: 1.0625, longSlotLength: 2.5 },
+    "1-1/8": { diameter: "1-1/8", standard: 1.25, oversized: 1.4375, shortSlotWidth: 1.1875, shortSlotLength: 1.5, longSlotWidth: 1.1875, longSlotLength: 2.8125 },
+    "1-1/4": { diameter: "1-1/4", standard: 1.375, oversized: 1.5625, shortSlotWidth: 1.3125, shortSlotLength: 1.625, longSlotWidth: 1.3125, longSlotLength: 3.125 },
+    "1-3/8": { diameter: "1-3/8", standard: 1.5, oversized: 1.6875, shortSlotWidth: 1.4375, shortSlotLength: 1.75, longSlotWidth: 1.4375, longSlotLength: 3.4375 },
+    "1-1/2": { diameter: "1-1/2", standard: 1.625, oversized: 1.8125, shortSlotWidth: 1.5625, shortSlotLength: 1.875, longSlotWidth: 1.5625, longSlotLength: 3.75 },
 };
 
 // Table J3.4 - Minimum Edge Distance (Values for Sheared and Rolled Edges)
