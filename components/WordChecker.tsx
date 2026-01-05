@@ -200,7 +200,7 @@ export default function WordChecker({ showToast }: WordCheckerProps) {
             inputRef={docInputRef}
             onUpload={handleDocUpload}
             accept=".txt"
-            placeholder="Upload BOM or Text"
+            placeholder="Upload PDF Text file eg: PDF_Check.txt"
           />
           <FileUploadTile
             title="2. Verification List"
@@ -209,7 +209,7 @@ export default function WordChecker({ showToast }: WordCheckerProps) {
             inputRef={listInputRef}
             onUpload={handleListUpload}
             accept=".txt,.csv"
-            placeholder="Upload CSV Key"
+            placeholder="Upload BOM text file eg: BOM.txt"
           />
         </div>
 
