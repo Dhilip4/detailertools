@@ -7,7 +7,7 @@ import { getAngleGage, getBeamFlangeGage, getBeamWebGage } from '../../utils/ais
 import AngleGageVisualizer from './AngleGageVisualizer';
 
 const GageSelector: React.FC = () => {
-    const [shapeType, setShapeType] = useState<'W' | 'C' | 'L'>('W');
+    const [shapeType, setShapeType] = useState<'W' | 'C' | 'L'>('L');
     const [shapes, setShapes] = useState<AISCShape[]>([]);
     const [loading, setLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
