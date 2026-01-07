@@ -3,7 +3,9 @@ import {
     Search, ArrowLeft, Calendar, User, Tag, Star, ChevronRight, ChevronLeft, BookOpen,
     Lock, Unlock, Plus, Pencil, Trash2, Download, X, Save, ImagePlus,
     Bold, Italic, List, Heading, Eye, EyeOff,
-    Sparkles, Link as LinkIcon, ListOrdered, Link
+    Sparkles, Link as LinkIcon, ListOrdered, Link, Underline, AlignLeft, 
+    AlignCenter, AlignRight, Code, Quote, Undo, Redo, Heading1, Heading2, 
+    Type, Youtube
 } from 'lucide-react';
 import { BLOG_POSTS, BlogPost } from './blogData';
 
@@ -18,36 +20,378 @@ interface EditorProps {
     onInit: (ref: React.RefObject<HTMLDivElement | null>) => void;
 }
 
-const RichTextEditor = ({ initialContent, onChange, onInit }: EditorProps) => {
+// ==================== ENHANCED RICH TEXT EDITOR ====================
+const EnhancedRichTextEditor = ({ initialContent, onChange, onInit }: EditorProps) => {
     const editorRef = useRef<HTMLDivElement>(null);
-    const initialized = useRef(false);
+    const [showLinkInput, setShowLinkInput] = useState(false);
+    const [linkUrl, setLinkUrl] = useState('');
+    const [history, setHistory] = useState<string[]>([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        if (editorRef.current && !initialized.current) {
-            editorRef.current.innerHTML = initialContent || '';
-            initialized.current = true;
-            onInit(editorRef);
+        if (editorRef.current && initialContent) {
+            editorRef.current.innerHTML = initialContent;
+            setHistory([initialContent]);
+            setHistoryIndex(0);
         }
+        onInit(editorRef);
     }, [initialContent, onInit]);
 
-    const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
-        onChange(e.currentTarget.innerHTML);
+    const saveToHistory = () => {
+        if (editorRef.current) {
+            const content = editorRef.current.innerHTML;
+            const newHistory = history.slice(0, historyIndex + 1);
+            newHistory.push(content);
+            setHistory(newHistory);
+            setHistoryIndex(newHistory.length - 1);
+        }
     };
 
+    const execCommand = (command: string, value?: string) => {
+        document.execCommand(command, false, value);
+        saveToHistory();
+        editorRef.current?.focus();
+    };
+
+    const undo = () => {
+        if (historyIndex > 0) {
+            const newIndex = historyIndex - 1;
+            setHistoryIndex(newIndex);
+            if (editorRef.current) {
+                editorRef.current.innerHTML = history[newIndex];
+                onChange(history[newIndex]);
+            }
+        }
+    };
+
+    const redo = () => {
+        if (historyIndex < history.length - 1) {
+            const newIndex = historyIndex + 1;
+            setHistoryIndex(newIndex);
+            if (editorRef.current) {
+                editorRef.current.innerHTML = history[newIndex];
+                onChange(history[newIndex]);
+            }
+        }
+    };
+
+    const insertLink = () => {
+        if (linkUrl) {
+            execCommand('createLink', linkUrl);
+            setShowLinkInput(false);
+            setLinkUrl('');
+        }
+    };
+
+    const extractYouTubeId = (url: string): string | null => {
+        const patterns = [
+            /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s]+)/,
+            /youtube\.com\/shorts\/([^&\s]+)/
+        ];
+        
+        for (const pattern of patterns) {
+            const match = url.match(pattern);
+            if (match) return match[1];
+        }
+        return null;
+    };
+
+    const insertYouTube = (videoId: string) => {
+        const iframe = `
+            <div class="video-embed" contenteditable="false" style="position: relative; padding-bottom: 56.25%; height: 0; margin: 24px 0; border-radius: 12px; overflow: hidden; background: #000;">
+                <iframe 
+                    src="https://www.youtube.com/embed/${videoId}" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p><br></p>
+        `;
+        document.execCommand('insertHTML', false, iframe);
+        saveToHistory();
+    };
+
+    const handlePaste = (e: React.ClipboardEvent) => {
+        const text = e.clipboardData.getData('text/plain');
+        const youtubeId = extractYouTubeId(text);
+        
+        if (youtubeId) {
+            e.preventDefault();
+            insertYouTube(youtubeId);
+        }
+    };
+
+    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const img = `<img src="${reader.result}" style="max-width: 100%; height: auto; border-radius: 12px; margin: 16px 0;" />`;
+                document.execCommand('insertHTML', false, img);
+                saveToHistory();
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleInput = () => {
+        if (editorRef.current) {
+            onChange(editorRef.current.innerHTML);
+        }
+    };
+
+    const ToolbarButton = ({ onClick, icon: Icon, title, active = false }: any) => (
+        <button
+            type="button"
+            onClick={onClick}
+            title={title}
+            className={`p-2 rounded transition-colors ${
+                active 
+                    ? 'bg-[#76b900] text-black' 
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700'
+            }`}
+            onMouseDown={(e) => e.preventDefault()}
+        >
+            <Icon size={18} />
+        </button>
+    );
+
+    const ToolbarDivider = () => <div className="w-px h-6 bg-gray-800 mx-1" />;
+
     return (
-        <div className="flex-1 relative bg-[#0f0f0f] overflow-y-auto custom-scrollbar"
-            onClick={() => editorRef.current?.focus()}>
+        <div className="flex flex-col bg-[#111] overflow-hidden h-full">
+            {/* Toolbar */}
+            <div className="bg-[#1a1a1a] border-b border-gray-800 p-3 flex items-center gap-1 shrink-0 sticky top-0 z-10 flex-wrap">
+                <ToolbarButton onClick={undo} icon={Undo} title="Undo (Ctrl+Z)" />
+                <ToolbarButton onClick={redo} icon={Redo} title="Redo (Ctrl+Y)" />
+                
+                <ToolbarDivider />
+                
+                <ToolbarButton 
+                    onClick={() => execCommand('formatBlock', '<h1>')} 
+                    icon={Heading1} 
+                    title="Heading 1" 
+                />
+                <ToolbarButton 
+                    onClick={() => execCommand('formatBlock', '<h2>')} 
+                    icon={Heading2} 
+                    title="Heading 2" 
+                />
+                <ToolbarButton 
+                    onClick={() => execCommand('formatBlock', '<p>')} 
+                    icon={Type} 
+                    title="Paragraph" 
+                />
+                
+                <ToolbarDivider />
+                
+                <ToolbarButton onClick={() => execCommand('bold')} icon={Bold} title="Bold (Ctrl+B)" />
+                <ToolbarButton onClick={() => execCommand('italic')} icon={Italic} title="Italic (Ctrl+I)" />
+                <ToolbarButton onClick={() => execCommand('underline')} icon={Underline} title="Underline (Ctrl+U)" />
+                
+                <ToolbarDivider />
+                
+                <ToolbarButton 
+                    onClick={() => execCommand('insertUnorderedList')} 
+                    icon={List} 
+                    title="Bullet List" 
+                />
+                <ToolbarButton 
+                    onClick={() => execCommand('insertOrderedList')} 
+                    icon={ListOrdered} 
+                    title="Numbered List" 
+                />
+                
+                <ToolbarDivider />
+                
+                <ToolbarButton 
+                    onClick={() => execCommand('justifyLeft')} 
+                    icon={AlignLeft} 
+                    title="Align Left" 
+                />
+                <ToolbarButton 
+                    onClick={() => execCommand('justifyCenter')} 
+                    icon={AlignCenter} 
+                    title="Align Center" 
+                />
+                <ToolbarButton 
+                    onClick={() => execCommand('justifyRight')} 
+                    icon={AlignRight} 
+                    title="Align Right" 
+                />
+                
+                <ToolbarDivider />
+                
+                <ToolbarButton 
+                    onClick={() => execCommand('formatBlock', '<blockquote>')} 
+                    icon={Quote} 
+                    title="Quote" 
+                />
+                <ToolbarButton 
+                    onClick={() => execCommand('formatBlock', '<pre>')} 
+                    icon={Code} 
+                    title="Code Block" 
+                />
+                
+                <ToolbarDivider />
+                
+                {showLinkInput ? (
+                    <div className="flex gap-2 items-center bg-gray-800 px-3 py-1 rounded-lg">
+                        <input
+                            type="text"
+                            value={linkUrl}
+                            onChange={(e) => setLinkUrl(e.target.value)}
+                            placeholder="https://example.com"
+                            className="bg-gray-900 text-white px-3 py-1 rounded text-sm outline-none border border-gray-700 focus:border-[#76b900]"
+                            onKeyPress={(e) => e.key === 'Enter' && insertLink()}
+                            autoFocus
+                        />
+                        <button 
+                            onClick={insertLink} 
+                            className="px-3 py-1 bg-[#76b900] text-black rounded text-sm font-bold hover:bg-[#88cc00]"
+                        >
+                            Insert
+                        </button>
+                        <button 
+                            onClick={() => setShowLinkInput(false)} 
+                            className="px-3 py-1 bg-gray-700 text-white rounded text-sm hover:bg-gray-600"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                ) : (
+                    <ToolbarButton 
+                        onClick={() => setShowLinkInput(true)} 
+                        icon={Link} 
+                        title="Insert Link" 
+                    />
+                )}
+                
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    className="hidden"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                />
+                <ToolbarButton 
+                    onClick={() => fileInputRef.current?.click()} 
+                    icon={ImagePlus} 
+                    title="Insert Image" 
+                />
+                
+                <ToolbarButton 
+                    onClick={() => {
+                        const url = prompt('Enter YouTube URL:');
+                        if (url) {
+                            const id = extractYouTubeId(url);
+                            if (id) {
+                                insertYouTube(id);
+                            } else {
+                                alert('Invalid YouTube URL');
+                            }
+                        }
+                    }} 
+                    icon={Youtube} 
+                    title="Insert YouTube Video" 
+                />
+            </div>
+
+            {/* Editor Area */}
             <div
                 ref={editorRef}
                 contentEditable
-                suppressContentEditableWarning
                 onInput={handleInput}
-                className="w-full min-h-full p-8 md:p-12 text-gray-300 font-sans text-lg leading-relaxed outline-none prose prose-invert max-w-none"
+                onPaste={handlePaste}
+                className="flex-1 p-8 md:p-12 text-gray-300 text-lg leading-relaxed outline-none overflow-y-auto custom-scrollbar"
+                style={{ minHeight: '400px' }}
+                suppressContentEditableWarning
             />
+
+            {/* Info Bar */}
+            <div className="bg-[#151515] px-6 py-2 text-xs text-gray-500 border-t border-gray-800 flex justify-between items-center shrink-0">
+                <span>💡 Tip: Paste YouTube links directly to embed videos</span>
+                <span className="font-mono">
+                    {editorRef.current?.innerText.split(/\s+/).filter(Boolean).length || 0} words
+                </span>
+            </div>
+
+            {/* Editor Styles */}
+            <style>{`
+                [contenteditable] {
+                    caret-color: #76b900;
+                }
+                [contenteditable] h1 {
+                    font-size: 2.5em;
+                    font-weight: 900;
+                    margin: 1em 0 0.5em;
+                    color: #fff;
+                    line-height: 1.2;
+                }
+                [contenteditable] h2 {
+                    font-size: 2em;
+                    font-weight: 800;
+                    margin: 0.8em 0 0.4em;
+                    color: #fff;
+                    line-height: 1.3;
+                }
+                [contenteditable] p {
+                    margin: 0.8em 0;
+                    line-height: 1.8;
+                }
+                [contenteditable] blockquote {
+                    border-left: 4px solid #76b900;
+                    padding-left: 1.5rem;
+                    margin: 1.5rem 0;
+                    color: #9ca3af;
+                    font-style: italic;
+                }
+                [contenteditable] pre {
+                    background: #000;
+                    color: #76b900;
+                    padding: 1.5rem;
+                    border-radius: 8px;
+                    overflow-x: auto;
+                    margin: 1.5rem 0;
+                    font-family: 'Courier New', monospace;
+                    border: 1px solid #333;
+                }
+                [contenteditable] img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 12px;
+                    margin: 1rem 0;
+                }
+                [contenteditable] a {
+                    color: #76b900;
+                    text-decoration: underline;
+                    transition: opacity 0.2s;
+                }
+                [contenteditable] a:hover {
+                    opacity: 0.8;
+                }
+                [contenteditable] ul, [contenteditable] ol {
+                    padding-left: 2rem;
+                    margin: 1rem 0;
+                }
+                [contenteditable] li {
+                    margin: 0.5rem 0;
+                }
+                .video-embed {
+                    user-select: none;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                }
+                [contenteditable]:focus {
+                    outline: none;
+                }
+            `}</style>
         </div>
     );
 };
 
+// ==================== MAIN BLOG COMPONENT ====================
 export default function Blog({ showToast, initialPostId }: BlogProps) {
     // --- STATE ---
     const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS || []);
@@ -92,22 +436,6 @@ export default function Blog({ showToast, initialPostId }: BlogProps) {
         activeEditorRef.current = ref.current;
     }, []);
 
-    const execFormat = (command: string, value: string | undefined = undefined) => {
-        document.execCommand(command, false, value);
-        if (activeEditorRef.current) {
-            activeEditorRef.current.focus();
-            const content = activeEditorRef.current.innerHTML;
-            setFormData(prev => ({ ...prev, content }));
-        }
-    };
-
-    const handleInsertLink = () => {
-        const url = prompt('Enter the URL:', 'https://');
-        if (url) {
-            execFormat('createLink', url);
-        }
-    };
-
     const handleCoverImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -115,18 +443,6 @@ export default function Blog({ showToast, initialPostId }: BlogProps) {
             reader.onloadend = () => {
                 setFormData(prev => ({ ...prev, img: reader.result as string }));
                 if (showToast) showToast("Cover image updated!", "success");
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    const handleContentImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                execFormat('insertImage', reader.result as string);
-                if (showToast) showToast("Image inserted!", "success");
             };
             reader.readAsDataURL(file);
         }
@@ -515,25 +831,11 @@ export const BLOG_POSTS: BlogPost[] = ${JSON.stringify(posts, null, 2)};`;
                                 </div>
                             </div>
                             <div className="w-full md:w-2/3 flex flex-col bg-[#111] overflow-hidden">
-                                <div className="bg-[#1a1a1a] border-b border-gray-800 p-3 flex items-center gap-1 shrink-0 z-10 sticky top-0">
-                                    <button type="button" onClick={() => execFormat('formatBlock', 'H2')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded"><Heading size={18} /></button>
-                                    <button type="button" onClick={() => execFormat('bold')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded"><Bold size={18} /></button>
-                                    <button type="button" onClick={() => execFormat('italic')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded"><Italic size={18} /></button>
-                                    <div className="w-px h-6 bg-gray-800 mx-2"></div>
-                                    <button type="button" onClick={() => execFormat('insertUnorderedList')} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded"><List size={18} /></button>
-                                    <button type="button" onClick={handleInsertLink} className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded" title="Insert Link"><Link size={18} /></button>
-                                    <div className="flex-grow"></div>
-                                    <input type="file" ref={contentImageInputRef} className="hidden" accept="image/*" onChange={handleContentImageUpload} />
-                                    <button type="button" onClick={() => contentImageInputRef.current?.click()} className="p-2 px-4 bg-[#76b900]/10 text-[#76b900] hover:bg-[#76b900]/20 rounded-lg transition-colors font-bold flex items-center gap-2"><ImagePlus size={18} /> <span className="text-xs">Inline Image</span></button>
-                                </div>
-                                <RichTextEditor
+                                <EnhancedRichTextEditor
                                     initialContent={formData.content || ''}
                                     onChange={(content) => setFormData(prev => ({ ...prev, content }))}
                                     onInit={handleEditorInit}
                                 />
-                                <div className="bg-[#151515] px-6 py-2 text-xs text-gray-500 border-t border-gray-800 flex justify-end shrink-0">
-                                    <span className="font-mono">{formData.content ? formData.content.replace(/<[^>]*>?/gm, '').split(/\s+/).filter(Boolean).length : 0} words</span>
-                                </div>
                             </div>
                         </div>
                     </div>
